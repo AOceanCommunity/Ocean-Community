@@ -36,10 +36,15 @@
   .navlinks a:hover{opacity:1;}
   .back-link{display:inline-block; margin:36px 0 20px; font-size:13.5px; text-decoration:none; opacity:0.75; border-bottom:1px solid var(--line); padding-bottom:2px;}
   .back-link:hover{opacity:1; border-color:var(--sand);}
-  .art-strip{height:170px; width:100%; border:1px solid var(--line); margin-bottom:28px; overflow:hidden;}
-  .art-strip img{width:100%; height:100%; display:block; object-fit:cover;}
+  .lodge-hero{position:relative; height:320px; border-radius:20px; overflow:hidden; margin-bottom:28px; box-shadow:0 24px 50px -20px rgba(0,0,0,0.55);}
+  .lodge-hero img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease;}
+  .lodge-hero:hover img{transform:scale(1.05);}
+  .hero-overlay{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:24px 28px; background:linear-gradient(180deg, rgba(6,26,46,0) 30%, rgba(6,26,46,0.55) 70%, rgba(6,26,46,0.92) 100%);}
+  .hero-overlay h1{margin-bottom:4px; text-shadow:0 2px 16px rgba(0,0,0,0.5);}
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
   h1{font-size:clamp(30px,4.4vw,46px); margin-bottom:8px;}
-  .loc{font-family:'IBM Plex Mono', monospace; font-size:13px; opacity:0.7; margin-bottom:18px;}
+  .loc{font-family:'IBM Plex Mono', monospace; font-size:13px; opacity:0.9; margin-bottom:0;}
   p.lede{font-size:16px; opacity:0.9; margin-bottom:22px; max-width:65ch;}
   .conserve-block{background:rgba(27,92,138,0.3); border-left:3px solid var(--flare); padding:18px 20px; margin-bottom:28px; max-width:65ch;}
   .conserve-block h2{font-size:15px; margin-bottom:8px; font-family:'Sora',sans-serif; font-weight:600;}
@@ -81,24 +86,28 @@
 </nav>
 <div class="wrap">
   <a class="back-link" href="../index.html">← Back to Eco Stays</a>
-  <div class="art-strip"><img src="https://images.pexels.com/photos/29040289/pexels-photo-29040289.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A person stands on a clifftop overlooking the deep blue Mediterranean Sea in Ibiza." loading="lazy"></div>
-  <div class="eyebrow">Europe · Eco Lodge Spotlight</div>
-  <h1>7Pines Resort Ibiza</h1>
-  <div class="loc">Ibiza, Spain</div>
-  <p class="lede">Clifftop resort overlooking the Mediterranean on Ibiza's west coast. 7Pines Resort Ibiza is one of the six places Ocean Community features in Europe for travelers who want a stay that actually gives something back to the ocean.</p>
+  <header class="lodge-hero">
+    <img src="https://images.pexels.com/photos/29040289/pexels-photo-29040289.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A person stands on a clifftop overlooking the deep blue Mediterranean Sea in Ibiza." loading="lazy">
+    <div class="hero-overlay">
+      <div class="eyebrow">Europe · Eco Lodge Spotlight</div>
+      <h1>7Pines Resort Ibiza</h1>
+      <div class="loc">Ibiza, Spain</div>
+    </div>
+  </header>
+  <p class="lede reveal">Clifftop resort overlooking the Mediterranean on Ibiza's west coast. 7Pines Resort Ibiza is one of the six places Ocean Community features in Europe for travelers who want a stay that actually gives something back to the ocean.</p>
 
   <h2 class="section-head">Why it is on this list</h2>
-  <div class="conserve-block">
+  <div class="conserve-block reveal">
     <p>Donates to Our Dolphins, a project led by marine research group Tursiops Association studying and protecting Ibiza's resident dolphin population.</p>
   </div>
   <p class="context-para">It is one of six stays we feature in Europe for exactly this reason: a conservation claim that is specific, sourced, and checkable, not a line of marketing copy.</p>
 
   <h2 class="section-head">Good to know before you book</h2>
-  <p class="good-to-know">You book directly with 7Pines Resort Ibiza on their own site — Ocean Community does not process the booking or take a cut of what you spend. Every property on Ocean Community is chosen for a named, checkable conservation tie rather than a general green claim, and we recheck that story as we go rather than setting it once and forgetting it.</p>
-  <div class="cta"><a class="btn-visit" href="https://7pines-ibiza.com/en/home" target="_blank" rel="noopener">Visit official site →</a></div>
+  <p class="good-to-know reveal">You book directly with 7Pines Resort Ibiza on their own site — Ocean Community does not process the booking or take a cut of what you spend. Every property on Ocean Community is chosen for a named, checkable conservation tie rather than a general green claim, and we recheck that story as we go rather than setting it once and forgetting it.</p>
+  <div class="cta reveal"><a class="btn-visit" href="https://7pines-ibiza.com/en/home" target="_blank" rel="noopener">Visit official site →</a></div>
 
   <h2 class="section-head">More eco lodges in Europe</h2>
-  <ul class="related-list">
+  <ul class="related-list reveal">
     <li><a href="solar-branco-eco-estate.html">Solar Branco Eco Estate</a> — São Miguel, Azores, Portugal</li>
     <li><a href="santa-barbara-eco-beach-resort.html">Santa Barbara Eco Beach Resort</a> — São Miguel, Azores, Portugal</li>
     <li><a href="domes-aulus-zante.html">Domes Aulus Zante</a> — Laganas Bay, Zakynthos, Greece</li>
@@ -106,10 +115,22 @@
     <li><a href="sir-joan-ibiza.html">Sir Joan</a> — Ibiza, Spain</li>
   </ul>
 
-  <p class="vetting-note">Ocean Community is not affiliated with 7Pines Resort Ibiza and does not process bookings or earn a commission from this listing.</p>
+  <p class="vetting-note reveal">Ocean Community is not affiliated with 7Pines Resort Ibiza and does not process bookings or earn a commission from this listing.</p>
 </div>
 <footer>
   <div class="wrap">© 2026 Ocean Community. Pure showcase. We do not process bookings or take a commission.</div>
 </footer>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
