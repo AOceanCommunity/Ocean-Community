@@ -43,6 +43,9 @@
   .page-head h1{font-size:clamp(32px, 4.6vw, 56px); margin:14px 0 16px;}
   .page-head h1 em{font-style:italic; color:var(--sand);}
   .page-head p{max-width:60ch; opacity:0.88; font-size:16px;}
+  .ig-link{display:inline-flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; color:var(--sand); text-decoration:none; margin-top:18px; opacity:0.9; transition:color .18s ease, opacity .18s ease;}
+  .ig-link:hover{color:var(--flare); opacity:1;}
+  .ig-link svg{width:17px; height:17px; flex-shrink:0;}
   .status-banner{margin-top:26px; padding:14px 18px; display:flex; gap:10px; align-items:flex-start; background:rgba(47,168,224,0.1); border:1px solid var(--line); border-left:3px solid var(--flare); font-size:13.5px; opacity:0.95; max-width:72ch;}
   .filterbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:32px;}
   .filter-btn{font-family:'Sora', sans-serif; font-weight:600; font-size:13.5px; background:rgba(255,255,255,0.03); color:var(--foam); border:1px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; letter-spacing:0.01em; transition:all .18s ease;}
@@ -96,7 +99,11 @@
   <div class="wrap">
     <div class="eyebrow">Top 6 · every continent</div>
     <h1>The world's <em>top 6</em> eco lodges, villas and hotels, by continent.</h1>
-    <p>Ocean Community started as a place to share what we love about the ocean. This page is an extension of that: the six most genuinely conservation minded places to stay on each continent, gathered by a community built around one belief, that the best thing we can do is help protect the place we love most.</p>
+    <p>Ocean Community started as a place to share what we love about the ocean. This page is an extension of that with the six most genuinely conservation minded places to stay on each continent, gathered by a community built around one belief, that the best thing we can do is help protect the place we love most, our oceans.</p>
+    <a class="ig-link" href="https://www.instagram.com/ocean_community" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
+      Follow @ocean_community on Instagram
+    </a>
     <div class="filterbar" id="filterbar">
       <button class="filter-btn active" data-continent="all">All continents</button>
       <button class="filter-btn" data-continent="asia">Asia</button>
