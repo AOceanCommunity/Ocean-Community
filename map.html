@@ -30,8 +30,10 @@
   .page-head p{opacity:0.8; font-size:15px; max-width:70ch;}
   .legend{display:flex; gap:16px; flex-wrap:wrap; margin:18px 0 22px; font-size:12.5px;}
   .legend-item{display:flex; align-items:center; gap:6px; opacity:0.85;}
-  .legend-item i{width:10px; height:10px; border-radius:50%; display:inline-block;}
+  .legend-item i{width:10px; height:10px; border-radius:50%; display:inline-block; border:1.5px solid #fff;}
   #map{height:70vh; min-height:420px; width:100%; border:1px solid var(--line); margin-bottom:40px; background:var(--current);}
+  #map .leaflet-interactive{filter:drop-shadow(0 0 4px rgba(0,0,0,0.85));}
+  #map .leaflet-marker-icon{filter:drop-shadow(0 2px 3px rgba(0,0,0,0.7));}
   .leaflet-popup-content-wrapper{background:var(--current); color:var(--foam); border-radius:0; border:1px solid var(--line);}
   .leaflet-popup-tip{background:var(--current);}
   .popup-name{font-family:'Fraunces', serif; font-weight:600; font-size:15px; margin-bottom:2px;}
@@ -48,8 +50,8 @@
     <a class="logo" href="index.html">Ocean <span>Community</span></a>
     <div class="navlinks">
       <a href="map.html">Eco Stays</a>
-      <a href="index.html#about">About Us</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </nav>
@@ -87,8 +89,10 @@
 
   function addMarker(lat, lng, color, name, loc, desc, href){
     const marker = L.circleMarker([lat, lng], {
-      radius: 7, color: color, weight: 2, fillColor: color, fillOpacity: 0.55
+      radius: 9, color: '#ffffff', weight: 2.5, fillColor: color, fillOpacity: 1
     }).addTo(map);
+    marker.on('mouseover', () => marker.setRadius(12));
+    marker.on('mouseout', () => marker.setRadius(9));
     marker.bindPopup(
       '<div class="popup-name">' + name + '</div>' +
       '<div class="popup-loc">' + loc + '</div>' +
