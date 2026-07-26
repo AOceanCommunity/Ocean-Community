@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Community — Top 6 Eco Lodges by Continent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss:#061A2E; --current:#0E3E63; --current2:#123A5C; --foam:#EAF5FC;
+    --kelp:#1B5C8A; --flare:#2FA8E0; --coral:#FF8B6B; --sand:#BFE0F2; --line: rgba(234,245,252,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--abyss); color:var(--foam); font-family:'Sora', sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--sand); opacity:0.85;}
+  nav{position:sticky; top:0; z-index:50; background:rgba(6,26,46,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:18px 0;}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Fraunces', serif; font-style:italic; font-size:20px;}
+  .logo span{color:var(--flare); font-style:normal;}
+  .navlinks{display:flex; gap:26px; font-size:14px;}
+  .navlinks a{opacity:0.85; text-decoration:none;}
+  .navlinks a:hover{opacity:1;}
+  .navlinks a:focus-visible{outline:2px solid var(--flare); outline-offset:3px;}
+  header.page-head{position:relative; padding:80px 0 48px; border-bottom:1px solid var(--line); overflow:hidden;}
+  .hero-photo{position:absolute; inset:0; z-index:0; background-image:url('ocean-hero.jpg'); background-size:cover; background-position:center 60%;}
+  .hero-photo::after{content:""; position:absolute; inset:0; background:
+      linear-gradient(180deg, rgba(6,26,46,0.6) 0%, rgba(6,26,46,0.4) 35%, rgba(6,26,46,0.94) 100%),
+      linear-gradient(90deg, rgba(6,26,46,0.88) 0%, rgba(6,26,46,0.3) 55%, rgba(6,26,46,0.2) 100%);}
+  .page-head .wrap{position:relative; z-index:2;}
+  .page-head h1{font-size:clamp(32px, 4.6vw, 56px); margin:14px 0 16px;}
+  .page-head h1 em{font-style:italic; color:var(--sand);}
+  .page-head p{max-width:60ch; opacity:0.88; font-size:16px;}
+  .status-banner{margin-top:26px; padding:14px 18px; display:flex; gap:10px; align-items:flex-start; background:rgba(47,168,224,0.1); border:1px solid var(--line); border-left:3px solid var(--flare); font-size:13.5px; opacity:0.95; max-width:72ch;}
+  .filterbar{display:flex; gap:10px; flex-wrap:wrap; margin-top:32px;}
+  .filter-btn{font-family:'IBM Plex Mono', monospace; font-size:12.5px; background:transparent; color:var(--foam); border:1px solid var(--line); padding:9px 16px; cursor:pointer; letter-spacing:0.03em; transition:all .15s ease;}
+  .filter-btn:hover{border-color:var(--sand);}
+  .filter-btn.active{background:var(--flare); color:var(--abyss); border-color:var(--flare); font-weight:600;}
+  section{padding:60px 0;}
+  .continent-block{margin-bottom:52px; transition:opacity .25s ease;}
+  .continent-block.hidden{display:none;}
+  .continent-head{display:flex; align-items:baseline; gap:14px; margin-bottom:8px; flex-wrap:wrap;}
+  .continent-head h2{font-size:clamp(22px,2.6vw,30px);}
+  .progress-pill{font-family:'IBM Plex Mono', monospace; font-size:12px; border:1px solid var(--line); padding:4px 10px; opacity:0.8;}
+  .progress-pill.done{border-color:var(--flare); color:var(--flare); opacity:1;}
+  .continent-note{font-size:13px; opacity:0.65; margin-bottom:8px; max-width:70ch;}
+  .rule-full{height:1px; background:var(--line); margin-bottom:26px; margin-top:14px;}
+  .stays{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
+  .stay{background:var(--current); border:1px solid var(--line); display:flex; flex-direction:column; transition:transform .2s ease, border-color .2s ease; overflow:hidden;}
+  .stay:hover{transform:translateY(-3px); border-color:var(--flare);}
+  .stay-art{height:130px; width:100%; position:relative; background:var(--current2);}
+  .stay-art svg{width:100%; height:100%; display:block;}
+  .stay-rank{position:absolute; top:10px; left:10px; font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600; background:rgba(6,26,46,0.75); color:var(--sand); padding:3px 8px; border:1px solid var(--line);}
+  .stay-body{padding:20px 20px 18px; display:flex; flex-direction:column; gap:9px; flex:1;}
+  .stay h3{font-size:18px; font-weight:500;}
+  .stay .loc{font-size:12px; opacity:0.7; font-family:'IBM Plex Mono', monospace;}
+  .stay .desc{font-size:13px; opacity:0.85;}
+  .stay .conserve-note{font-size:12px; padding:8px 10px; background:rgba(27,92,138,0.35); border-left:2px solid var(--flare); opacity:0.92; line-height:1.55;}
+  .stay-foot{margin-top:auto; padding-top:12px; border-top:1px solid var(--line); display:flex; justify-content:flex-end; align-items:center;}
+  .visit-link{font-size:12.5px; font-weight:600; text-decoration:none; border-bottom:1px solid var(--flare); padding-bottom:2px;}
+  .visit-link:hover{opacity:0.8;}
+  .tag{display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em; padding:3px 8px; border:1px solid var(--line); opacity:0.7; width:fit-content;}
+  .tag.verify{border-color:var(--coral); color:var(--coral); opacity:0.9;}
+  @media (max-width:980px){ .stays{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:640px){ .stays{grid-template-columns:1fr;} }
+  footer{padding:56px 0 40px; border-top:1px solid var(--line); font-size:12px; opacity:0.5;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Ocean <span>Community</span></div>
+    <div class="navlinks">
+      <a href="ocean_community.html">Trips</a>
+      <a href="#lodges">Eco Lodges</a>
+      <a href="#about">How we choose</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="eyebrow">Top 6 · every continent</div>
+    <h1>The world's <em>top 6</em> eco lodges, villas and hotels, by continent.</h1>
+    <p>Ocean Community started as a place to share what we love about the ocean. This page is an extension of that: the six most genuinely conservation minded places to stay on each continent, gathered by a community built around one belief, that the best thing we can do is help protect the place we love most.</p>
+    <div class="status-banner">
+      <span>⚑</span>
+      <span><strong>Status:</strong> we are still filling out a couple of continents. The count next to each continent shows how many of the six are confirmed so far.</span>
+    </div>
+    <div class="filterbar" id="filterbar">
+      <button class="filter-btn active" data-continent="all">All continents</button>
+      <button class="filter-btn" data-continent="asia">Asia</button>
+      <button class="filter-btn" data-continent="africa">Africa</button>
+      <button class="filter-btn" data-continent="europe">Europe</button>
+      <button class="filter-btn" data-continent="namerica">North America</button>
+      <button class="filter-btn" data-continent="samerica">South America</button>
+      <button class="filter-btn" data-continent="oceania">Oceania</button>
+    </div>
+  </div>
+</header>
+
+<section id="lodges">
+  <div class="wrap">
+    <div class="continent-block" data-continent="asia">
+      <div class="continent-head"><h2>Asia</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="rule-full"></div>
+      <div class="stays">
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">01</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,84 Q75,62 150,84 Q225,62 300,80 L300,130 L0,130 Z" fill="#1B5C8A"/><circle cx="240" cy="26" r="18" fill="#BFE0F2" opacity="0.8"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Misool Eco Resort</h3>
+            <div class="loc">Raja Ampat, Indonesia</div>
+            <p class="desc">Private island dive resort in southern Raja Ampat, max 40 guests.</p>
+            <div class="conserve-note">Self funds and patrols its own 1,220 sq km marine reserve, established 2005. Fish biomass up 250 to 600% inside it.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/misool-eco-resort.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">02</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,86 Q75,66 150,86 Q225,66 300,82 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.85"/><circle cx="180" cy="78" r="3" fill="#FF8B6B"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Cempedak Island</h3>
+            <div class="loc">Riau Archipelago, Indonesia</div>
+            <p class="desc">Adults only private island, 20 bamboo villas, member of The Long Run conservation alliance.</p>
+            <div class="conserve-note">Runs The Island Foundation, funding a Marine Protected Area and coastal community education.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/cempedak-island.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">03</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,82 Q75,104 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M60,60 Q75,42 90,60 Q105,44 120,60" stroke="#EAF5FC" stroke-width="2.5" fill="none" opacity="0.5"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Atmosphere Resort and Spa</h3>
+            <div class="loc">Dauin, Philippines</div>
+            <p class="desc">Beachfront boutique resort on Negros Island, on the edge of Dauin's coral reef diving sites.</p>
+            <div class="conserve-note">Works with the Institute for Marine Research on a program to preserve Dauin's coral reefs.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/atmosphere-resort-and-spa.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">04</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,88 Q75,68 150,88 Q225,68 300,84 L300,130 L0,130 Z" fill="#1B5C8A"/><ellipse cx="210" cy="80" rx="12" ry="5" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Gili Lankanfushi</h3>
+            <div class="loc">North Male Atoll, Maldives</div>
+            <p class="desc">Overwater villa resort known for its bare feet, no shoes philosophy.</p>
+            <div class="conserve-note">Marine biologists on staff since 2012, a rope based coral restoration project, and EarthCheck Gold Certification, one of only three in the Maldives.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/gili-lankanfushi.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">05</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,80 Q75,58 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.7"/><rect x="50" y="82" width="6" height="28" fill="#8FBF9F" opacity="0.7"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Conrad Maldives Rangali Island</h3>
+            <div class="loc">South Ari Atoll, Maldives</div>
+            <p class="desc">Twin island overwater resort, certified PADI Five Star Dive Resort and Eco Center.</p>
+            <div class="conserve-note">Nurtures over 3,500 coral fragments in an ongoing reef restoration initiative.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/conrad-maldives-rangali-island.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">06</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,90 Q75,70 150,90 Q225,70 300,86 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M40,70 L50,54 L60,70 Z" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Six Senses Laamu</h3>
+            <div class="loc">Laamu Atoll, Maldives</div>
+            <p class="desc">Overwater resort built around a purpose built marine research center.</p>
+            <div class="conserve-note">Runs the Maldives Underwater Initiative, a team of ten plus marine biologists that released 3 million coral larvae onto damaged reefs after the 2024 bleaching event, working with Manta Trust, Blue Marine Foundation, and the Olive Ridley Project.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/six-senses-laamu.html">Read more →</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="continent-block" data-continent="africa">
+      <div class="continent-head"><h2>Africa</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="rule-full"></div>
+      <div class="stays">
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">01</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,84 Q75,62 150,84 Q225,62 300,80 L300,130 L0,130 Z" fill="#1B5C8A"/><circle cx="240" cy="26" r="18" fill="#BFE0F2" opacity="0.8"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Chumbe Island Coral Park</h3>
+            <div class="loc">Zanzibar, Tanzania</div>
+            <p class="desc">Small eco lodge on the island that is also the world's first privately managed marine protected area.</p>
+            <div class="conserve-note">Entirely funded through ecotourism revenue. Profits fund marine education for local schools.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/chumbe-island-coral-park.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">02</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,86 Q75,66 150,86 Q225,66 300,82 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.85"/><circle cx="180" cy="78" r="3" fill="#FF8B6B"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Mnemba Island Lodge</h3>
+            <div class="loc">Zanzibar, Tanzania</div>
+            <p class="desc">Exclusive 12 banda lodge inside the Mnemba Island Marine Conservation Area, run by andBeyond.</p>
+            <div class="conserve-note">Tied to a funded coral nursery and reef restoration research program running 2024 to 2027 with three universities.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/mnemba-island-lodge.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">03</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,82 Q75,104 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M60,60 Q75,42 90,60 Q105,44 120,60" stroke="#EAF5FC" stroke-width="2.5" fill="none" opacity="0.5"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Zuri Zanzibar</h3>
+            <div class="loc">Kendwa, Zanzibar, Tanzania</div>
+            <p class="desc">Contemporary design resort in Kendwa, on Zanzibar's northwest coast.</p>
+            <div class="conserve-note">EarthCheck certified, running on solar power and desalinated water, with a garden project training local women in sustainable agriculture.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/zuri-zanzibar.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">04</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,88 Q75,68 150,88 Q225,68 300,84 L300,130 L0,130 Z" fill="#1B5C8A"/><ellipse cx="210" cy="80" rx="12" ry="5" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>The Zanzibari</h3>
+            <div class="loc">Nungwi, Zanzibar, Tanzania</div>
+            <p class="desc">Boutique beach hotel on Zanzibar's northern tip.</p>
+            <div class="conserve-note">Limits plastic use, conserves energy, and supports local coral protection efforts.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/the-zanzibari.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">05</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,80 Q75,58 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.7"/><rect x="50" y="82" width="6" height="28" fill="#8FBF9F" opacity="0.7"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Komba Cabana</h3>
+            <div class="loc">Nosy Komba, Madagascar</div>
+            <p class="desc">Forest eco lodge on the small island of Nosy Komba.</p>
+            <div class="conserve-note">Solar powered and works to minimize its environmental impact on the surrounding forest and coastline.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/komba-cabana.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">06</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,90 Q75,70 150,90 Q225,70 300,86 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M40,70 L50,54 L60,70 Z" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>North Island Seychelles</h3>
+            <div class="loc">North Island, Seychelles</div>
+            <p class="desc">Eight villa private island, once a coconut plantation, now barefoot luxury.</p>
+            <div class="conserve-note">Runs the Ark Project, restoring the island to native rainforest and reintroducing giant tortoises. One of the first private islands to seek international marine protection status for its surrounding reefs, with green and hawksbill turtles now returning to nest.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/north-island-seychelles.html">Read more →</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="continent-block" data-continent="europe">
+      <div class="continent-head"><h2>Europe</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="rule-full"></div>
+      <div class="stays">
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">01</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,84 Q75,62 150,84 Q225,62 300,80 L300,130 L0,130 Z" fill="#1B5C8A"/><circle cx="240" cy="26" r="18" fill="#BFE0F2" opacity="0.8"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Solar Branco Eco Estate</h3>
+            <div class="loc">São Miguel, Azores, Portugal</div>
+            <p class="desc">Restored 150 year old heritage estate, now a boutique eco hotel.</p>
+            <div class="conserve-note">Donates 5 euros per room per night to The Ocean Azores Foundation, which the owners founded. Led the Azores' Whale Heritage Site certification.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/solar-branco-eco-estate.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">02</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,86 Q75,66 150,86 Q225,66 300,82 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.85"/><circle cx="180" cy="78" r="3" fill="#FF8B6B"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Santa Barbara Eco Beach Resort</h3>
+            <div class="loc">São Miguel, Azores, Portugal</div>
+            <p class="desc">Surf focused resort on São Miguel's north coast, built with timber and cork.</p>
+            <div class="conserve-note">Guests can arrange whale watching through the hotel, in an archipelago governed by strict whale watching licensing rules.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/santa-barbara-eco-beach-resort.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">03</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,82 Q75,104 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M60,60 Q75,42 90,60 Q105,44 120,60" stroke="#EAF5FC" stroke-width="2.5" fill="none" opacity="0.5"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Domes Aulus Zante</h3>
+            <div class="loc">Laganas Bay, Zakynthos, Greece</div>
+            <p class="desc">Resort on the beach fronting Laganas Bay, inside the National Marine Park of Zakynthos.</p>
+            <div class="conserve-note">Adopted 70 loggerhead turtle nests from the beach in front of the resort in 2023 and another 70 in 2024, in partnership with ARCHELON, and funded the rescue of an injured turtle.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/domes-aulus-zante.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">04</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,88 Q75,68 150,88 Q225,68 300,84 L300,130 L0,130 Z" fill="#1B5C8A"/><ellipse cx="210" cy="80" rx="12" ry="5" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Gecko Hotel and Beach Club</h3>
+            <div class="loc">Formentera, Spain</div>
+            <p class="desc">Beachfront hotel that has set the standard for eco conscious style on Formentera for over two decades.</p>
+            <div class="conserve-note">Adds a discretionary one euro per night to guest bills, funding IbizaPreservation's Posidonia seagrass protection project in the waters around Ibiza and Formentera.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/gecko-hotel-and-beach-club.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">05</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,80 Q75,58 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.7"/><rect x="50" y="82" width="6" height="28" fill="#8FBF9F" opacity="0.7"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>7Pines Resort Ibiza</h3>
+            <div class="loc">Ibiza, Spain</div>
+            <p class="desc">Clifftop resort overlooking the Mediterranean on Ibiza's west coast.</p>
+            <div class="conserve-note">Donates to Our Dolphins, a project led by marine research group Tursiops Association studying and protecting Ibiza's resident dolphin population.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/7pines-resort-ibiza.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">06</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,90 Q75,70 150,90 Q225,70 300,86 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M40,70 L50,54 L60,70 Z" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Sir Joan</h3>
+            <div class="loc">Ibiza, Spain</div>
+            <p class="desc">38 room boutique hotel in Ibiza town, part of the Sir Hotels group.</p>
+            <div class="conserve-note">Adds a one euro per night donation to guest bills, supporting IbizaPreservation's land and sea conservation projects around Ibiza.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/sir-joan-ibiza.html">Read more →</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="continent-block" data-continent="namerica">
+      <div class="continent-head"><h2>North America</h2><span class="progress-pill done">6 / 6</span></div>
+      <p class="continent-note">Includes Central America.</p>
+      <div class="rule-full"></div>
+      <div class="stays">
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">01</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,84 Q75,62 150,84 Q225,62 300,80 L300,130 L0,130 Z" fill="#1B5C8A"/><circle cx="240" cy="26" r="18" fill="#BFE0F2" opacity="0.8"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Osa Verde Biolodge</h3>
+            <div class="loc">Osa Peninsula, Costa Rica</div>
+            <p class="desc">Open air boutique lodge run as an initiative of the nonprofit Osa Conservation.</p>
+            <div class="conserve-note">100% of proceeds go to Osa Conservation's restoration work. Reforested over 6,000 acres of rainforest habitat since 2003.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/osa-verde-biolodge.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">02</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,86 Q75,66 150,86 Q225,66 300,82 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.85"/><circle cx="180" cy="78" r="3" fill="#FF8B6B"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>SCP Corcovado Wilderness Lodge</h3>
+            <div class="loc">Drake Bay, Costa Rica</div>
+            <p class="desc">All inclusive, boat access only lodge bordering Corcovado National Park and a marine reserve.</p>
+            <div class="conserve-note">Runs a Pristine Playa ocean waste program with marine conservation organization Innoceana.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/scp-corcovado-wilderness-lodge.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">03</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,82 Q75,104 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M60,60 Q75,42 90,60 Q105,44 120,60" stroke="#EAF5FC" stroke-width="2.5" fill="none" opacity="0.5"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs more verification</span>
+            <h3>Las Animas Ecolodge</h3>
+            <div class="loc">Bahía de los Ángeles, Mexico</div>
+            <p class="desc">Remote, boat access lodge built around regulated whale shark, whale, and sea lion encounters.</p>
+            <div class="conserve-note">Encounters run under strict government wildlife regulation. Specific conservation funding partners still need confirming.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/las-animas-ecolodge.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">04</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,88 Q75,68 150,88 Q225,68 300,84 L300,130 L0,130 Z" fill="#1B5C8A"/><ellipse cx="210" cy="80" rx="12" ry="5" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>El Remanso Lodge</h3>
+            <div class="loc">Osa Peninsula, Costa Rica</div>
+            <p class="desc">16 room sustainable lodge with ocean tide pools and rainforest trails.</p>
+            <div class="conserve-note">Built around a legacy of sustainability practices on the edge of Corcovado National Park's coastline.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/el-remanso-lodge.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">05</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,80 Q75,58 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.7"/><rect x="50" y="82" width="6" height="28" fill="#8FBF9F" opacity="0.7"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Aguila de Osa</h3>
+            <div class="loc">Drake Bay, Costa Rica</div>
+            <p class="desc">Rainforest and marine adventure lodge overlooking Drake Bay.</p>
+            <div class="conserve-note">Gives direct access to the Caño Island Biological Marine Reserve, one of Costa Rica's most tightly protected dive sites.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/aguila-de-osa.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">06</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,90 Q75,70 150,90 Q225,70 300,86 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M40,70 L50,54 L60,70 Z" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Turneffe Flats Lodge</h3>
+            <div class="loc">Turneffe Atoll, Belize</div>
+            <p class="desc">Small lodge on the eastern edge of Turneffe Atoll, part of the Belize Barrier Reef.</p>
+            <div class="conserve-note">Sits beside the Turneffe Atoll Marine Reserve, co managed by the Turneffe Atoll Sustainability Association, which runs ranger patrols and fisheries enforcement across the reserve.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/turneffe-flats-lodge.html">Read more →</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="continent-block" data-continent="samerica">
+      <div class="continent-head"><h2>South America</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="rule-full"></div>
+      <div class="stays">
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">01</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,84 Q75,62 150,84 Q225,62 300,80 L300,130 L0,130 Z" fill="#1B5C8A"/><circle cx="240" cy="26" r="18" fill="#BFE0F2" opacity="0.8"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Finch Bay Hotel</h3>
+            <div class="loc">Santa Cruz Island, Galápagos, Ecuador</div>
+            <p class="desc">Beachfront hotel near Puerto Ayora, base for exploring the Galápagos Marine Reserve.</p>
+            <div class="conserve-note">Runs on around 300 solar panels and electric boats, with an on site organic garden and multiple sustainability certifications.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/finch-bay-hotel.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">02</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,86 Q75,66 150,86 Q225,66 300,82 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.85"/><circle cx="180" cy="78" r="3" fill="#FF8B6B"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Tivoli Ecoresort Praia do Forte</h3>
+            <div class="loc">Bahia, Brazil</div>
+            <p class="desc">Coastal resort on Brazil's Whale Coast, beside the village where the TAMAR sea turtle program began.</p>
+            <div class="conserve-note">Sits next to the TAMAR Project, Brazil's national sea turtle conservation program, and promotes guest visits to it.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/tivoli-ecoresort-praia-do-forte.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">03</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,82 Q75,104 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M60,60 Q75,42 90,60 Q105,44 120,60" stroke="#EAF5FC" stroke-width="2.5" fill="none" opacity="0.5"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Galapagos Safari Camp</h3>
+            <div class="loc">Santa Cruz Island, Galápagos, Ecuador</div>
+            <p class="desc">Safari style tented camp in the highlands of Santa Cruz Island.</p>
+            <div class="conserve-note">Solar powered for water heating and electricity, with rainwater collection and direct work alongside the Galápagos National Park.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/galapagos-safari-camp.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">04</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,88 Q75,68 150,88 Q225,68 300,84 L300,130 L0,130 Z" fill="#1B5C8A"/><ellipse cx="210" cy="80" rx="12" ry="5" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Awasi Santa Catarina</h3>
+            <div class="loc">Santa Catarina, Brazil</div>
+            <p class="desc">All inclusive private villa lodge on Brazil's southern coast.</p>
+            <div class="conserve-note">A short boat ride from the Arvoredo Marine Biological Reserve, a tightly protected underwater landscape home to sea turtles, dolphins, rays, and dozens of tropical fish species.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/awasi-santa-catarina.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">05</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,80 Q75,58 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.7"/><rect x="50" y="82" width="6" height="28" fill="#8FBF9F" opacity="0.7"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Mandala Lodge</h3>
+            <div class="loc">Puerto Lopez, Ecuador</div>
+            <p class="desc">Coastal lodge on Ecuador's Pacific coast, near Machalilla National Park.</p>
+            <div class="conserve-note">Sits in the same waters researched by the Pacific Whale Foundation, which has run humpback whale research and photo identification work here since the species' migration route was first mapped.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/mandala-lodge.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">06</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,90 Q75,70 150,90 Q225,70 300,86 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M40,70 L50,54 L60,70 Z" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Ecohabs Tayrona</h3>
+            <div class="loc">Tayrona National Park, Colombia</div>
+            <p class="desc">Bamboo and palm bungalows inside Tayrona National Park, overlooking the Caribbean.</p>
+            <div class="conserve-note">Solar powered with a zero waste policy, staffed mostly by locals, with part of guest income supporting the park's conservation efforts.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/ecohabs-tayrona.html">Read more →</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="continent-block" data-continent="oceania">
+      <div class="continent-head"><h2>Oceania</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="rule-full"></div>
+      <div class="stays">
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">01</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,84 Q75,62 150,84 Q225,62 300,80 L300,130 L0,130 Z" fill="#1B5C8A"/><circle cx="240" cy="26" r="18" fill="#BFE0F2" opacity="0.8"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Jean Michel Cousteau Resort</h3>
+            <div class="loc">Savusavu Bay, Fiji</div>
+            <p class="desc">25 villa eco retreat founded on Jean Michel Cousteau's ocean conservation philosophy.</p>
+            <div class="conserve-note">Full time in house marine biologist, active reef protection program, giant clam breeding project.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/jean-michel-cousteau-resort.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">02</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,86 Q75,66 150,86 Q225,66 300,82 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.85"/><circle cx="180" cy="78" r="3" fill="#FF8B6B"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Maqai Beach Eco Surf Resort</h3>
+            <div class="loc">Qamea Island, Fiji</div>
+            <p class="desc">Small surf focused eco resort, a natural bridge to the site's surf trips.</p>
+            <div class="conserve-note">Multiple time Fiji Excellence in Tourism sustainability award winner. Coral gardening and a village agreed marine reserve.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/maqai-beach-eco-surf-resort.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">03</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,82 Q75,104 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M60,60 Q75,42 90,60 Q105,44 120,60" stroke="#EAF5FC" stroke-width="2.5" fill="none" opacity="0.5"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Green Lodge Moorea</h3>
+            <div class="loc">Moorea, French Polynesia</div>
+            <p class="desc">Barefoot beach bungalows on Moorea, run with a direct island conservation partnership.</p>
+            <div class="conserve-note">Every stay includes adopting one square meter of land with the nonprofit Keep Moorea Wild, funding a wildlife sanctuary.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/green-lodge-moorea.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">04</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,88 Q75,68 150,88 Q225,68 300,84 L300,130 L0,130 Z" fill="#1B5C8A"/><ellipse cx="210" cy="80" rx="12" ry="5" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Sau Bay Resort</h3>
+            <div class="loc">Vanua Levu, Fiji</div>
+            <p class="desc">Small dive resort on Fiji's second largest island.</p>
+            <div class="conserve-note">Partners with the Pacific Blue Foundation on the Beqa Lagoon Initiative, having planted over 50 star reef frames with coral colonies alongside ten local villages.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/sau-bay-resort.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">05</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,80 Q75,58 150,80 Q225,58 300,76 L300,130 L0,130 Z" fill="#1B5C8A" opacity="0.7"/><rect x="50" y="82" width="6" height="28" fill="#8FBF9F" opacity="0.7"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag verify">Needs official link</span>
+            <h3>Likuliku Lagoon Resort</h3>
+            <div class="loc">Malolo Island, Fiji</div>
+            <p class="desc">Fiji's only overwater bures, on the Mamanuca Islands.</p>
+            <div class="conserve-note">The waters in front of the resort were declared a marine protected area in 2005 by the local paramount chief. Sea turtle sightings have increased since.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/likuliku-lagoon-resort.html">Read more →</a></div>
+          </div>
+        </article>
+
+        <article class="stay">
+          <div class="stay-art"><span class="stay-rank">06</span>
+            <svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice"><rect width="300" height="130" fill="#0C3252"/><path d="M0,90 Q75,70 150,90 Q225,70 300,86 L300,130 L0,130 Z" fill="#1B5C8A"/><path d="M40,70 L50,54 L60,70 Z" fill="#8FBF9F" opacity="0.6"/></svg>
+          </div>
+          <div class="stay-body">
+            <span class="tag">Verified conservation tie</span>
+            <h3>Lady Elliot Island Eco Resort</h3>
+            <div class="loc">Great Barrier Reef, Australia</div>
+            <p class="desc">Coral cay resort at the southern tip of the Great Barrier Reef.</p>
+            <div class="conserve-note">The first Great Barrier Reef resort to ban plastic water bottles, run on desalinated seawater within a protected Green Zone, and named one of five official climate change refuges by the Great Barrier Reef Foundation.</div>
+            <div class="stay-foot"><a class="visit-link" href="lodges/lady-elliot-island-eco-resort.html">Read more →</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="about" style="padding-top:0;">
+  <div class="wrap" style="border-top:1px solid var(--line); padding-top:56px;">
+    <h2 style="font-size:clamp(24px,3vw,32px); margin-bottom:16px;">How we choose these six</h2>
+    <p style="max-width:62ch; opacity:0.8; font-size:15px; margin-bottom:14px;">Every property here is picked for a specific, checkable conservation tie. A named reserve, a funded research program, a stated per night contribution. Not a general sustainability statement. Click through to any listing for the full story and a link to the property's own site. Ocean Community does not process bookings or take a cut of anything you spend.</p>
+    <p style="max-width:62ch; opacity:0.7; font-size:14px;">Verified conservation tie means we have found a specific, sourced claim we are confident in. Needs official link means the conservation story checks out but we have not yet confirmed the property's own website to link to. Needs more verification means the conservation claim itself still needs a direct conversation with the property before we would stand behind it fully.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Ocean Community. Pure showcase. We do not process bookings or take a commission. Card artwork is illustrative, not photography from the properties.</div>
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const blocks = document.querySelectorAll('.continent-block');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const continent = btn.dataset.continent;
+      blocks.forEach(block => {
+        if(continent === 'all' || block.dataset.continent === continent){
+          block.classList.remove('hidden');
+        } else {
+          block.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
