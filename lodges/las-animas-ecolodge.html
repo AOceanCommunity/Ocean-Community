@@ -44,7 +44,8 @@
   .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
   .reveal.visible{opacity:1; transform:translateY(0);}
   h1{font-size:clamp(30px,4.4vw,46px); margin-bottom:8px;}
-  .loc{font-family:'IBM Plex Mono', monospace; font-size:13px; opacity:0.9; margin-bottom:0;}
+  .loc{display:flex; align-items:center; gap:7px; font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.02em; opacity:0.92; margin-bottom:0;}
+  .loc svg{width:14px; height:14px; color:var(--flare); flex-shrink:0;}
   p.lede{font-size:16px; opacity:0.9; margin-bottom:22px; max-width:65ch;}
   .conserve-block{background:rgba(27,92,138,0.3); border-left:3px solid var(--flare); padding:18px 20px; margin-bottom:28px; max-width:65ch;}
   .conserve-block h2{font-size:15px; margin-bottom:8px; font-family:'Sora',sans-serif; font-weight:600;}
@@ -91,7 +92,7 @@
     <div class="hero-overlay">
       <div class="eyebrow">North America · Eco Lodge Spotlight</div>
       <h1>Las Animas Ecolodge</h1>
-      <div class="loc">Bahía de los Ángeles, Mexico</div>
+      <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>Bahía de los Ángeles, Mexico</div>
     </div>
   </header>
   <p class="lede reveal">Remote, boat access lodge built around regulated whale shark, whale, and sea lion encounters. Las Animas Ecolodge is one of the six places Ocean Community features in North America for travelers who want a stay that actually gives something back to the ocean.</p>
