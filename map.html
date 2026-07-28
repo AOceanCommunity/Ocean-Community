@@ -31,6 +31,7 @@
   .page-head h1{font-size:clamp(26px,3.6vw,40px); margin-bottom:10px;}
   .page-head p{opacity:0.8; font-size:15px; max-width:70ch;}
   .map-frame{position:relative; border-radius:22px; overflow:hidden; margin-bottom:40px; box-shadow:0 30px 70px -24px rgba(0,0,0,0.65), 0 0 0 1px var(--line);}
+  .map-frame::after{content:""; position:absolute; inset:0; z-index:405; pointer-events:none; background:radial-gradient(ellipse at center, transparent 50%, rgba(6,26,46,0.4) 100%);}
   #map{height:70vh; min-height:420px; width:100%; background:var(--current);}
   #map .leaflet-tile-pane{filter:saturate(1.18) contrast(1.1) brightness(0.92) hue-rotate(-4deg);}
   #map .leaflet-marker-icon{filter:drop-shadow(0 2px 3px rgba(0,0,0,0.7));}
@@ -103,6 +104,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <script>
   const map = L.map('map', { worldCopyJump: true, zoomControl: false }).setView([10, 20], 2);
+  const bounds = L.latLngBounds();
   L.control.zoom({ position: 'topright' }).addTo(map);
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
@@ -132,6 +134,7 @@
   map.addLayer(clusters);
 
   function addMarker(lat, lng, color, name, loc, desc, href){
+    bounds.extend([lat, lng]);
     const marker = L.marker([lat, lng], {
       icon: L.divIcon({
         html: '<div class="map-pin" style="background:' + color + ';"></div>',
@@ -188,6 +191,8 @@
   addMarker(-16.6, 179.35, '#C792EA', 'Sau Bay Resort', 'Vanua Levu, Fiji', 'Small dive resort on Fiji\'s second largest island.', 'lodges/sau-bay-resort.html');
   addMarker(-17.78, 177.19, '#C792EA', 'Likuliku Lagoon Resort', 'Malolo Island, Fiji', 'Fiji\'s only overwater bures, on the Mamanuca Islands.', 'lodges/likuliku-lagoon-resort.html');
   addMarker(-24.11, 152.71, '#C792EA', 'Lady Elliot Island Eco Resort', 'Great Barrier Reef, Australia', 'Coral cay resort at the southern tip of the Great Barrier Reef.', 'lodges/lady-elliot-island-eco-resort.html');
+
+  map.fitBounds(bounds, { padding: [30, 30] });
 </script>
 
 </body>
