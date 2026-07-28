@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
 <style>
   :root{
     --abyss:#061A2E; --current:#0E3E63; --foam:#EAF5FC;
@@ -30,8 +32,11 @@
   .page-head p{opacity:0.8; font-size:15px; max-width:70ch;}
   .map-frame{position:relative; border-radius:22px; overflow:hidden; margin-bottom:40px; box-shadow:0 30px 70px -24px rgba(0,0,0,0.65), 0 0 0 1px var(--line);}
   #map{height:70vh; min-height:420px; width:100%; background:var(--current);}
-  #map .leaflet-interactive{filter:drop-shadow(0 0 4px rgba(0,0,0,0.85));}
   #map .leaflet-marker-icon{filter:drop-shadow(0 2px 3px rgba(0,0,0,0.7));}
+  .map-pin{width:16px; height:16px; border-radius:50%; border:2.5px solid #fff; box-shadow:0 0 4px rgba(0,0,0,0.85); transition:transform .15s ease; cursor:pointer;}
+  .map-pin:hover{transform:scale(1.35);}
+  .cluster-icon{display:flex; align-items:center; justify-content:center; width:100%; height:100%; border-radius:50%; background:rgba(6,26,46,0.88); backdrop-filter:blur(3px); border:2.5px solid var(--flare); box-shadow:0 6px 18px -6px rgba(0,0,0,0.7), 0 0 0 5px rgba(47,168,224,0.14); color:var(--foam); font-family:'Sora', sans-serif; font-weight:700; transition:transform .15s ease;}
+  .cluster-icon:hover{transform:scale(1.08);}
   .map-legend{position:absolute; top:16px; left:16px; z-index:410; display:flex; flex-direction:column; gap:9px; background:rgba(6,26,46,0.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:14px; padding:14px 18px; font-size:12.5px; box-shadow:0 14px 30px -14px rgba(0,0,0,0.55);}
   .legend-item{display:flex; align-items:center; gap:8px; opacity:0.9;}
   .legend-item i{width:10px; height:10px; border-radius:50%; display:inline-block; border:1.5px solid #fff;}
@@ -87,6 +92,7 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <script>
   const map = L.map('map', { worldCopyJump: true, zoomControl: false }).setView([10, 20], 2);
   L.control.zoom({ position: 'topright' }).addTo(map);
@@ -97,21 +103,41 @@
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
     maxZoom: 18,
+    minZoom: 4,
     subdomains: 'abcd'
   }).addTo(map);
 
+  const clusters = L.markerClusterGroup({
+    maxClusterRadius: 45,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+    iconCreateFunction: function(cluster){
+      const count = cluster.getChildCount();
+      const size = Math.min(52, 32 + count * 2);
+      return L.divIcon({
+        html: '<div class="cluster-icon" style="font-size:' + (count > 9 ? 12 : 13) + 'px;">' + count + '</div>',
+        className: 'cluster-wrap',
+        iconSize: L.point(size, size)
+      });
+    }
+  });
+  map.addLayer(clusters);
+
   function addMarker(lat, lng, color, name, loc, desc, href){
-    const marker = L.circleMarker([lat, lng], {
-      radius: 9, color: '#ffffff', weight: 2.5, fillColor: color, fillOpacity: 1
-    }).addTo(map);
-    marker.on('mouseover', () => marker.setRadius(12));
-    marker.on('mouseout', () => marker.setRadius(9));
+    const marker = L.marker([lat, lng], {
+      icon: L.divIcon({
+        html: '<div class="map-pin" style="background:' + color + ';"></div>',
+        className: 'pin-wrap',
+        iconSize: [16, 16]
+      })
+    });
     marker.bindPopup(
       '<div class="popup-name">' + name + '</div>' +
       '<div class="popup-loc">' + loc + '</div>' +
       '<div class="popup-desc">' + desc + '</div>' +
       '<a class="popup-link" href="' + href + '">Read more \u2192</a>'
     );
+    clusters.addLayer(marker);
   }
 
   addMarker(-1.87, 130.17, '#2FA8E0', 'Misool Eco Resort', 'Raja Ampat, Indonesia', 'A remote private island dive resort deep in southern Raja Ampat, surrounded by some of the richest reefs on Earth.', 'lodges/misool-eco-resort.html');
