@@ -32,7 +32,7 @@
   .page-head h1{font-size:clamp(26px,3.6vw,40px); margin-bottom:10px;}
   .page-head p{opacity:0.8; font-size:15px; max-width:70ch;}
   .map-frame{position:relative; border-radius:22px; overflow:hidden; margin-bottom:40px; box-shadow:0 30px 70px -24px rgba(0,0,0,0.65), 0 0 0 1px var(--line);}
-  .map-frame::after{content:""; position:absolute; inset:0; z-index:405; pointer-events:none; background:radial-gradient(ellipse at center, transparent 50%, rgba(6,26,46,0.4) 100%);}
+  .map-frame::after{content:""; position:absolute; inset:0; z-index:405; pointer-events:none; background:radial-gradient(ellipse at center, transparent 60%, rgba(6,26,46,0.28) 100%);}
   #map{height:70vh; min-height:420px; width:100%; background:var(--current);}
   #map .leaflet-marker-icon{filter:drop-shadow(0 2px 3px rgba(0,0,0,0.7));}
   .map-pin{width:16px; height:16px; border-radius:50%; border:2.5px solid #fff; box-shadow:0 0 4px rgba(0,0,0,0.85); transition:transform .15s ease; cursor:pointer;}
@@ -107,13 +107,14 @@
   const map = L.map('map', { worldCopyJump: true, zoomControl: false }).setView([10, 20], 2);
   const bounds = L.latLngBounds();
   L.control.zoom({ position: 'topright' }).addTo(map);
-  L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS User Community',
-    maxZoom: 16
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: US National Park Service',
+    maxZoom: 8
   }).addTo(map);
-  L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
-    maxZoom: 16,
-    minZoom: 3
+  L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Reference/World_Boundaries_and_Places_Alternate/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 12,
+    minZoom: 3,
+    opacity: 0.85
   }).addTo(map);
 
   const clusters = L.markerClusterGroup({
