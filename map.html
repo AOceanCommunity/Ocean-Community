@@ -103,7 +103,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <script>
-  const map = L.map('map', { worldCopyJump: true, zoomControl: false, minZoom: 3 }).setView([10, 20], 3);
+  const map = L.map('map', { worldCopyJump: true, zoomControl: false, minZoom: 1 }).setView([10, 20], 2);
   const bounds = L.latLngBounds();
   L.control.zoom({ position: 'topright' }).addTo(map);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
