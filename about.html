@@ -39,6 +39,8 @@
   .hero h1{font-size:clamp(30px,4.2vw,48px); margin:14px 0 16px;}
   .hero p.lede{max-width:60ch; opacity:0.9; font-size:16px;}
   .hero-actions{display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:22px;}
+  .since-badge{display:inline-flex; align-items:center; gap:9px; font-family:'Sora', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.04em; background:linear-gradient(135deg, rgba(47,168,224,0.22), rgba(47,168,224,0.08)); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(47,168,224,0.45); color:var(--sand); border-radius:999px; padding:8px 18px 8px 14px; box-shadow:0 8px 22px -10px rgba(47,168,224,0.5);}
+  .since-badge svg{width:15px; height:15px; color:var(--flare); flex-shrink:0;}
 
   main.wrap{padding:56px 28px 20px;}
   .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
@@ -87,6 +89,7 @@
     <h1>About Us</h1>
     <p class="lede">Established in 2020, Ocean Community started as a place to share what we love about the ocean, and grew into a community built around one belief: the best thing we can do is help protect the place we love most.</p>
     <div class="hero-actions">
+      <span class="since-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>Since 2020</span>
       <a class="ig-link" href="https://www.instagram.com/ocean_community/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
         @ocean_community
