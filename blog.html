@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Ocean Community</title>
+<meta name="description" content="Notes on how Ocean Community vets a conservation claim, what these reserves actually fund, and why we never take a booking commission.">
+<link rel="canonical" href="https://oceancommunity.example/blog.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog | Ocean Community">
+<meta property="og:description" content="Notes on how Ocean Community vets a conservation claim, what these reserves actually fund, and why we never take a booking commission.">
+<meta property="og:url" content="https://oceancommunity.example/blog.html">
+<meta property="og:image" content="https://oceancommunity.example/ocean-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss:#061A2E; --current:#0E3E63; --current2:#123A5C; --foam:#EAF5FC;
+    --flare:#2FA8E0; --sand:#BFE0F2; --line: rgba(234,245,252,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--abyss); color:var(--foam); font-family:'Sora', sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600;}
+  .eyebrow{font-family:'Sora', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--sand); opacity:0.9;}
+  nav{position:sticky; top:0; z-index:50; background:rgba(6,26,46,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:18px 0;}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Fraunces', serif; font-style:italic; font-size:20px; text-decoration:none; display:inline-block;}
+  .logo span{color:var(--flare); font-style:normal;}
+  .navlinks{display:flex; gap:26px; font-size:14px;}
+  .navlinks a{opacity:0.85; text-decoration:none;}
+  .navlinks a:hover{opacity:1;}
+  .navlinks a:focus-visible{outline:2px solid var(--flare); outline-offset:3px;}
+
+  .hero{position:relative; padding:64px 0 56px; border-bottom:1px solid var(--line); overflow:hidden;}
+  .hero-photo{position:absolute; inset:0; z-index:0; background-image:url('ocean-hero.jpg'); background-size:cover; background-position:center 60%; transition:transform .6s ease;}
+  .hero:hover .hero-photo{transform:scale(1.04);}
+  .hero-photo::after{content:""; position:absolute; inset:0; background:
+      linear-gradient(180deg, rgba(6,26,46,0.55) 0%, rgba(6,26,46,0.45) 35%, rgba(6,26,46,0.95) 100%),
+      linear-gradient(90deg, rgba(6,26,46,0.85) 0%, rgba(6,26,46,0.25) 55%, rgba(6,26,46,0.15) 100%);}
+  .hero .wrap{position:relative; z-index:2;}
+  .hero h1{font-size:clamp(30px,4.2vw,48px); margin:14px 0 16px;}
+  .hero p.lede{max-width:60ch; opacity:0.9; font-size:16px;}
+
+  main.wrap{padding:56px 28px 20px;}
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  .posts{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px; margin-bottom:40px;}
+  .post{background:linear-gradient(165deg, var(--current) 0%, var(--current2) 100%); border:1px solid var(--line); border-radius:18px; display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.15); text-decoration:none;}
+  .post:hover{transform:translateY(-6px); border-color:rgba(47,168,224,0.55); box-shadow:0 24px 44px -18px rgba(0,0,0,0.55), 0 0 0 1px rgba(47,168,224,0.2);}
+  .post-art{height:160px; width:100%; background:var(--current2);}
+  .post-art img{width:100%; height:100%; display:block; object-fit:cover;}
+  .post-body{padding:22px 22px 24px; display:flex; flex-direction:column; gap:10px; flex:1;}
+  .post-meta{display:flex; align-items:center; gap:10px; font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.02em; opacity:0.65;}
+  .post h2{font-size:18px; font-weight:500; line-height:1.35;}
+  .post .excerpt{font-size:13.5px; opacity:0.82; line-height:1.55;}
+  .post-foot{margin-top:auto; padding-top:14px; border-top:1px solid var(--line); display:flex; justify-content:flex-end; align-items:center;}
+  .read-link{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; transition:color .18s ease;}
+  .post:hover .read-link{color:var(--flare);}
+  .read-link span{transition:transform .18s ease;}
+  .post:hover .read-link span{transform:translateX(3px);}
+  @media (max-width:980px){ .posts{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:640px){ .posts{grid-template-columns:1fr;} }
+
+  main p.intro{max-width:66ch; opacity:0.82; font-size:15px; margin-bottom:36px;}
+
+  footer{padding:56px 0 40px; border-top:1px solid var(--line); font-size:12px; opacity:0.5;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="index.html">Ocean <span>Community</span></a>
+    <div class="navlinks">
+      <a href="map.html">Our Eco Stays</a>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="eyebrow">Notes from the team</div>
+    <h1>The Blog</h1>
+    <p class="lede">How we pick these 36 stays, what the conservation ties actually fund, and other things worth writing down instead of repeating one property at a time.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="intro reveal">This isn't a travel blog. It's the extra room for the stuff that doesn't fit on a single listing page: the process, the receipts, and the reasoning behind how Ocean Community works.</p>
+
+  <div class="posts">
+    <a class="post reveal" href="blog/how-we-vet-a-conservation-claim.html">
+      <div class="post-art">
+        <img src="https://images.pexels.com/photos/4666754/pexels-photo-4666754.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A scuba diver suspended in clear blue open water." loading="lazy">
+      </div>
+      <div class="post-body">
+        <div class="post-meta"><span>Process</span><span>·</span><span>5 min read</span></div>
+        <h2>How we vet a conservation claim before it makes the list</h2>
+        <p class="excerpt">"Eco friendly" isn't a bar. Here's the actual test a property has to pass before it gets one of the 36 spots on Ocean Community.</p>
+        <div class="post-foot"><span class="read-link">Read more <span>→</span></span></div>
+      </div>
+    </a>
+
+    <a class="post reveal" href="blog/what-these-reserves-actually-fund.html">
+      <div class="post-art">
+        <img src="https://images.pexels.com/photos/17984373/pexels-photo-17984373.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A view of a colorful coral reef underwater." loading="lazy">
+      </div>
+      <div class="post-body">
+        <div class="post-meta"><span>Conservation</span><span>·</span><span>6 min read</span></div>
+        <h2>Six numbers: what these conservation ties actually fund</h2>
+        <p class="excerpt">A 1,220 sq km reserve. 140 turtle nests across two seasons. A tour through what the properties on this list are really paying for, in specifics.</p>
+        <div class="post-foot"><span class="read-link">Read more <span>→</span></span></div>
+      </div>
+    </a>
+
+    <a class="post reveal" href="blog/why-no-booking-commission.html">
+      <div class="post-art">
+        <img src="https://images.pexels.com/photos/36788417/pexels-photo-36788417.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A wooden pier stretching into a calm turquoise sea." loading="lazy">
+      </div>
+      <div class="post-body">
+        <div class="post-meta"><span>About us</span><span>·</span><span>4 min read</span></div>
+        <h2>Why we don't take a cut of your booking</h2>
+        <p class="excerpt">Ocean Community doesn't process bookings or earn a commission. That's not an accident, and it changes what we're willing to list.</p>
+        <div class="post-foot"><span class="read-link">Read more <span>→</span></span></div>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2020 Ocean Community. Pure showcase. We do not process bookings or take a commission. Photos are representative of each destination, not official photography from the properties.</div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
