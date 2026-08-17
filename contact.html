@@ -32,7 +32,7 @@
   .navlinks a:hover::after{width:100%;}
   .navlinks a:focus-visible{outline:2px solid var(--flare); outline-offset:3px;}
 
-  main.wrap{padding:36px 28px 60px;}
+  main.wrap{padding:36px 28px 20px;}
   main h1{font-size:clamp(26px,3.6vw,40px); margin-bottom:18px;}
   main p{max-width:60ch; opacity:0.85; font-size:15.5px; margin-bottom:16px;}
 
@@ -44,7 +44,7 @@
   .mail-link:hover{background:#54baea; transform:translateX(2px);}
   .mail-link svg{width:18px; height:18px; flex-shrink:0;}
 
-  .topics{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:22px; margin-bottom:20px;}
+  .topics{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:22px; margin-bottom:0;}
   .topic-card{background:linear-gradient(165deg, var(--current) 0%, var(--current2) 100%); border:1px solid var(--line); border-radius:16px; padding:24px 26px; transition:transform .25s ease, border-color .25s ease;}
   .topic-card:hover{transform:translateY(-4px); border-color:rgba(47,168,224,0.5);}
   .topic-card h3{font-size:15.5px; margin-bottom:10px; font-family:'Sora', sans-serif; font-weight:600;}
@@ -56,7 +56,7 @@
     .navlinks{gap:16px; font-size:13px; flex-wrap:wrap;}
   }
   @media (max-width:480px){
-    main.wrap{padding:40px 20px 40px;}
+    main.wrap{padding:40px 20px 16px;}
     .mail-card{padding:24px 22px; margin:28px 0 40px;}
     .mail-link{width:100%; justify-content:center; white-space:normal; text-align:center;}
   }
