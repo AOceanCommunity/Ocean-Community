@@ -30,8 +30,10 @@
   .logo{font-family:'Fraunces', serif; font-style:italic; font-size:20px; text-decoration:none; display:inline-block;}
   .logo span{color:var(--flare); font-style:normal;}
   .navlinks{display:flex; gap:26px; font-size:14px;}
-  .navlinks a{opacity:0.85; text-decoration:none;}
-  .navlinks a:hover{opacity:1;}
+  .navlinks a{color:var(--sand); opacity:0.8; text-decoration:none; position:relative; padding-bottom:3px; transition:color .2s ease, opacity .2s ease;}
+  .navlinks a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px; background:linear-gradient(90deg, var(--flare), var(--sand)); transition:width .25s ease;}
+  .navlinks a:hover{opacity:1; color:var(--foam);}
+  .navlinks a:hover::after{width:100%;}
   .back-link{display:inline-block; margin:64px 0 20px; font-size:13.5px; text-decoration:none; opacity:0.75; border-bottom:1px solid var(--line); padding-bottom:2px;}
   .back-link:hover{opacity:1; border-color:var(--sand);}
   .post-hero{position:relative; height:320px; border-radius:20px; overflow:hidden; margin-bottom:28px; box-shadow:0 24px 50px -20px rgba(0,0,0,0.55);}
