@@ -57,6 +57,10 @@
   .hero .wrap{position:relative; z-index:2;}
   .hero h1{font-size:clamp(30px,4.2vw,48px); margin:14px 0 16px;}
   .hero p.lede{max-width:60ch; opacity:0.9; font-size:16px;}
+  .filterbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:28px;}
+  .filter-btn{font-family:'Sora', sans-serif; font-weight:600; font-size:13.5px; background:rgba(255,255,255,0.03); color:var(--foam); border:1px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; letter-spacing:0.01em; transition:all .18s ease;}
+  .filter-btn:hover{border-color:var(--sand); background:rgba(255,255,255,0.06);}
+  .filter-btn.active{background:var(--flare); color:var(--abyss); border-color:var(--flare); font-weight:600; box-shadow:0 6px 18px -6px rgba(47,168,224,0.6);}
 
   main.wrap{padding:32px 28px 20px;}
   .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
@@ -67,6 +71,7 @@
   }
 
   .posts{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px; margin-bottom:40px;}
+  .post.hidden{display:none;}
   .post{background:linear-gradient(165deg, var(--current) 0%, var(--current2) 100%); border:1px solid var(--line); border-radius:18px; display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.15); text-decoration:none;}
   .post:hover{transform:translateY(-6px); border-color:rgba(47,168,224,0.55); box-shadow:0 24px 44px -18px rgba(0,0,0,0.55), 0 0 0 1px rgba(47,168,224,0.2);}
   .post-art{height:160px; width:100%; background:var(--current2);}
@@ -91,6 +96,8 @@
     .wrap{padding:0 20px;}
     .hero{padding:36px 0 28px;}
     main.wrap{padding:36px 20px 20px;}
+    .filterbar{gap:6px;}
+    .filter-btn{font-size:12.5px; padding:7px 14px;}
   }
 </style>
 </head>
@@ -114,12 +121,19 @@
     <div class="eyebrow">Notes from the team</div>
     <h1>The Blog</h1>
     <p class="lede">How we pick these 36 stays, what the conservation ties actually fund and other things worth writing down!</p>
+    <div class="filterbar" id="filterbar">
+      <button class="filter-btn active" data-category="all">All posts</button>
+      <button class="filter-btn" data-category="conservation">Conservation</button>
+      <button class="filter-btn" data-category="location">Location</button>
+      <button class="filter-btn" data-category="process">Process</button>
+      <button class="filter-btn" data-category="about">About us</button>
+    </div>
   </div>
 </header>
 
 <main class="wrap">
   <div class="posts">
-    <a class="post reveal" href="blog/how-we-vet-a-conservation-claim.html">
+    <a class="post reveal" href="blog/how-we-vet-a-conservation-claim.html" data-category="process">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/4666754/pexels-photo-4666754.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A scuba diver suspended in clear blue open water." loading="lazy">
       </div>
@@ -131,7 +145,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/what-these-reserves-actually-fund.html">
+    <a class="post reveal" href="blog/what-these-reserves-actually-fund.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/17984373/pexels-photo-17984373.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A view of a colorful coral reef underwater." loading="lazy">
       </div>
@@ -143,7 +157,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-this-site-exists.html">
+    <a class="post reveal" href="blog/why-this-site-exists.html" data-category="about">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/4577831/pexels-photo-4577831.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Surfers waiting in the lineup as the sky turns pink and orange at sunset." loading="lazy" style="object-position:center 88%;">
       </div>
@@ -155,7 +169,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/raja-ampat-and-the-coral-triangle.html">
+    <a class="post reveal" href="blog/raja-ampat-and-the-coral-triangle.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/37805584/pexels-photo-37805584.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of scenic limestone islands and reef in Raja Ampat, Indonesia." loading="lazy">
       </div>
@@ -167,7 +181,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-southern-great-barrier-reef.html">
+    <a class="post reveal" href="blog/the-southern-great-barrier-reef.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/7759191/pexels-photo-7759191.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A manta ray gliding over a coral reef in sunlit water." loading="lazy">
       </div>
@@ -179,7 +193,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/seychelles-granite-islands-and-the-ark-project.html">
+    <a class="post reveal" href="blog/seychelles-granite-islands-and-the-ark-project.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/31386176/pexels-photo-31386176.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Turquoise water and granite boulder formations on a Seychelles beach." loading="lazy">
       </div>
@@ -191,7 +205,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/azores-whale-hunters-to-whale-watchers.html">
+    <a class="post reveal" href="blog/azores-whale-hunters-to-whale-watchers.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/37298085/pexels-photo-37298085.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a coastal town on Terceira Island in the Azores with the Atlantic Ocean beyond." loading="lazy">
       </div>
@@ -203,7 +217,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/corcovado-the-most-biologically-intense-place-on-earth.html">
+    <a class="post reveal" href="blog/corcovado-the-most-biologically-intense-place-on-earth.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/776717/pexels-photo-776717.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a tropical coastline in Costa Rica with rainforest meeting the ocean." loading="lazy">
       </div>
@@ -215,7 +229,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-swimway-connecting-galapagos-and-costa-rica.html">
+    <a class="post reveal" href="blog/the-swimway-connecting-galapagos-and-costa-rica.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/37069050/pexels-photo-37069050.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dramatic Galápagos coastline with rocky cliffs meeting the Pacific Ocean." loading="lazy">
       </div>
@@ -227,7 +241,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/chumbe-island-the-worlds-first-self-funded-marine-park.html">
+    <a class="post reveal" href="blog/chumbe-island-the-worlds-first-self-funded-marine-park.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/4810311/pexels-photo-4810311.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A colorful coral reef ecosystem underwater." loading="lazy">
       </div>
@@ -239,7 +253,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/growing-three-million-corals-back-in-the-maldives.html">
+    <a class="post reveal" href="blog/growing-three-million-corals-back-in-the-maldives.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/3100361/pexels-photo-3100361.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A vibrant coral reef with colorful fish underwater." loading="lazy">
       </div>
@@ -251,7 +265,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-fishing-village-that-became-brazils-sea-turtle-headquarters.html">
+    <a class="post reveal" href="blog/the-fishing-village-that-became-brazils-sea-turtle-headquarters.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/13010771/pexels-photo-13010771.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A sea turtle swimming over a coral reef underwater." loading="lazy">
       </div>
@@ -263,7 +277,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/how-laganas-bay-became-europes-busiest-turtle-nursery.html">
+    <a class="post reveal" href="blog/how-laganas-bay-became-europes-busiest-turtle-nursery.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/5022724/pexels-photo-5022724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close up of a sea turtle resting on a sandy beach." loading="lazy">
       </div>
@@ -275,7 +289,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/belizes-largest-atoll-took-until-2012-to-become-a-reserve.html">
+    <a class="post reveal" href="blog/belizes-largest-atoll-took-until-2012-to-become-a-reserve.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/3601450/pexels-photo-3601450.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of an island reef surrounded by a turquoise lagoon." loading="lazy">
       </div>
@@ -287,7 +301,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/protecting-moorea-one-square-meter-at-a-time.html">
+    <a class="post reveal" href="blog/protecting-moorea-one-square-meter-at-a-time.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/30422272/pexels-photo-30422272.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a turquoise lagoon in French Polynesia." loading="lazy">
       </div>
@@ -299,7 +313,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/what-percentage-of-the-ocean-is-actually-protected.html">
+    <a class="post reveal" href="blog/what-percentage-of-the-ocean-is-actually-protected.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/9662047/pexels-photo-9662047.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Drone view of a coral reef in clear ocean water." loading="lazy">
       </div>
@@ -311,7 +325,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/how-to-tell-a-real-eco-lodge-from-greenwashing.html">
+    <a class="post reveal" href="blog/how-to-tell-a-real-eco-lodge-from-greenwashing.html" data-category="process">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/15298798/pexels-photo-15298798.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a tropical beachfront resort with a pool and palm trees." loading="lazy">
       </div>
@@ -323,7 +337,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/what-coral-bleaching-actually-does-to-a-reef.html">
+    <a class="post reveal" href="blog/what-coral-bleaching-actually-does-to-a-reef.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/17155781/pexels-photo-17155781.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A coral reef underwater." loading="lazy">
       </div>
@@ -335,7 +349,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/what-reef-safe-sunscreen-actually-means.html">
+    <a class="post reveal" href="blog/what-reef-safe-sunscreen-actually-means.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/10802752/pexels-photo-10802752.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A person snorkeling in clear tropical ocean water." loading="lazy">
       </div>
@@ -347,7 +361,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-mangroves-store-ten-times-more-carbon-than-a-rainforest.html">
+    <a class="post reveal" href="blog/why-mangroves-store-ten-times-more-carbon-than-a-rainforest.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/12708316/pexels-photo-12708316.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mangrove tree roots reflecting in calm river water." loading="lazy">
       </div>
@@ -359,7 +373,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/inside-the-worlds-largest-shark-sanctuary.html">
+    <a class="post reveal" href="blog/inside-the-worlds-largest-shark-sanctuary.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/31745245/pexels-photo-31745245.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A tiger shark swimming underwater in the Maldives." loading="lazy">
       </div>
@@ -371,7 +385,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/what-ocean-acidification-actually-does-to-shells-and-coral.html">
+    <a class="post reveal" href="blog/what-ocean-acidification-actually-does-to-shells-and-coral.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/31186059/pexels-photo-31186059.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close up of oyster shells with pearls inside." loading="lazy">
       </div>
@@ -383,7 +397,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-a-single-whale-is-worth-two-million-dollars-in-carbon.html">
+    <a class="post reveal" href="blog/why-a-single-whale-is-worth-two-million-dollars-in-carbon.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/4609907/pexels-photo-4609907.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A humpback whale's tail breaking the ocean surface." loading="lazy">
       </div>
@@ -395,7 +409,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/seagrass-meadows-are-vanishing-at-1-5-percent-a-year.html">
+    <a class="post reveal" href="blog/seagrass-meadows-are-vanishing-at-1-5-percent-a-year.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/13156098/pexels-photo-13156098.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close up of seaweed on the beach." loading="lazy">
       </div>
@@ -406,7 +420,7 @@
         <div class="post-foot"><span class="read-link">Read more <span>→</span></span></div>
       </div>
     </a>
-    <a class="post reveal" href="blog/fijis-chiefs-have-been-declaring-marine-reserves-for-decades.html">
+    <a class="post reveal" href="blog/fijis-chiefs-have-been-declaring-marine-reserves-for-decades.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/3635910/pexels-photo-3635910.jpeg?auto=compress&cs=tinysrgb&w=800" alt="An underwater view of a vivid coral reef teeming with color in Fiji." loading="lazy">
       </div>
@@ -418,7 +432,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-marine-conservation-area-that-protects-mnemba-island.html">
+    <a class="post reveal" href="blog/the-marine-conservation-area-that-protects-mnemba-island.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/5993393/pexels-photo-5993393.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A quiet Zanzibar beach with a single palm tree leaning over pale sand and calm sea." loading="lazy">
       </div>
@@ -430,7 +444,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-almost-every-maldives-resort-employs-a-marine-biologist.html">
+    <a class="post reveal" href="blog/why-almost-every-maldives-resort-employs-a-marine-biologist.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/30037427/pexels-photo-30037427.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A luxurious overwater wooden bungalow with an infinity edge pool overlooking a calm turquoise lagoon at sunset in the Maldives." loading="lazy">
       </div>
@@ -442,7 +456,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-seagrass-meadows-that-earned-ibiza-a-unesco-listing.html">
+    <a class="post reveal" href="blog/the-seagrass-meadows-that-earned-ibiza-a-unesco-listing.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/28408402/pexels-photo-28408402.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A quiet white sand beach fringed by clear, shallow turquoise water in Formentera." loading="lazy">
       </div>
@@ -454,7 +468,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-nonprofit-that-has-reforested-6000-acres-of-the-osa-peninsula.html">
+    <a class="post reveal" href="blog/the-nonprofit-that-has-reforested-6000-acres-of-the-osa-peninsula.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/67395/pexels-photo-67395.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A calm jungle river winds through dense, overhanging Costa Rican rainforest foliage under an overcast tropical sky." loading="lazy">
       </div>
@@ -466,7 +480,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-a-fiji-resort-breeds-giant-clams.html">
+    <a class="post reveal" href="blog/why-a-fiji-resort-breeds-giant-clams.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/33191057/pexels-photo-33191057.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a tropical beachfront resort with swimming pools surrounded by palm trees in Fiji." loading="lazy">
       </div>
@@ -478,7 +492,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/brazils-strictest-marine-protection-category-sits-off-santa-catarina.html">
+    <a class="post reveal" href="blog/brazils-strictest-marine-protection-category-sits-off-santa-catarina.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/20883821/pexels-photo-20883821.jpeg?auto=compress&cs=tinysrgb&w=800" alt="View of Mole Beach in Florianópolis, Santa Catarina, showing Brazil's rugged southern Atlantic coastline." loading="lazy">
       </div>
@@ -490,7 +504,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-rules-that-govern-whale-shark-tourism-in-the-sea-of-cortez.html">
+    <a class="post reveal" href="blog/the-rules-that-govern-whale-shark-tourism-in-the-sea-of-cortez.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/1631768/pexels-photo-1631768.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A large whale shark glides just beneath the surface of clear blue ocean water off a remote desert coast." loading="lazy">
       </div>
@@ -502,7 +516,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/what-the-long-run-alliance-actually-requires-of-a-resort.html">
+    <a class="post reveal" href="blog/what-the-long-run-alliance-actually-requires-of-a-resort.html" data-category="process">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/30378147/pexels-photo-30378147.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A thatched bamboo beach hut nestled among tall palm trees on a quiet tropical shoreline." loading="lazy">
       </div>
@@ -514,7 +528,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/ibizas-resident-dolphin-population-has-its-own-research-group.html">
+    <a class="post reveal" href="blog/ibizas-resident-dolphin-population-has-its-own-research-group.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/29040289/pexels-photo-29040289.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A person stands on a clifftop overlooking the deep blue Mediterranean Sea in Ibiza." loading="lazy">
       </div>
@@ -526,7 +540,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/how-researchers-first-mapped-the-humpback-migration-to-ecuador.html">
+    <a class="post reveal" href="blog/how-researchers-first-mapped-the-humpback-migration-to-ecuador.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/31790312/pexels-photo-31790312.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A palm lined tropical beach with turquoise water on Ecuador's Pacific coast near Puerto Lopez." loading="lazy">
       </div>
@@ -538,7 +552,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-marine-protected-area-network-built-reef-by-reef-off-dauin.html">
+    <a class="post reveal" href="blog/the-marine-protected-area-network-built-reef-by-reef-off-dauin.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/33549424/pexels-photo-33549424.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a palm fringed tropical beach resort with turquoise water and white sand in the Philippines." loading="lazy">
       </div>
@@ -550,7 +564,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/how-coral-fragments-get-grown-back-onto-a-maldives-reef.html">
+    <a class="post reveal" href="blog/how-coral-fragments-get-grown-back-onto-a-maldives-reef.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/28843967/pexels-photo-28843967.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A long wooden walkway leads out to overwater villas above a clear turquoise lagoon in the Maldives." loading="lazy">
       </div>
@@ -562,7 +576,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-madagascars-deforestation-is-smothering-its-coral-reefs.html">
+    <a class="post reveal" href="blog/why-madagascars-deforestation-is-smothering-its-coral-reefs.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/14866996/pexels-photo-14866996.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dense coconut palms and tropical forest covering a steep, mountainous island slope under a clear sky in Madagascar." loading="lazy">
       </div>
@@ -574,7 +588,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-a-zanzibar-resort-makes-its-own-fresh-water.html">
+    <a class="post reveal" href="blog/why-a-zanzibar-resort-makes-its-own-fresh-water.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/15298798/pexels-photo-15298798.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a contemporary beachfront resort with a swimming pool, palm trees, and sun loungers beside white sand and turquoise sea in Zanzibar." loading="lazy">
       </div>
@@ -586,7 +600,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-worlds-highest-coastal-mountain-range-meets-the-caribbean-at-tayrona.html">
+    <a class="post reveal" href="blog/the-worlds-highest-coastal-mountain-range-meets-the-caribbean-at-tayrona.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/12227830/pexels-photo-12227830.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a turquoise cove framed by lush green headlands in Tayrona National Park on Colombia's Caribbean coast." loading="lazy">
       </div>
@@ -598,7 +612,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/why-the-galapagos-marine-reserve-cares-about-electric-boats.html">
+    <a class="post reveal" href="blog/why-the-galapagos-marine-reserve-cares-about-electric-boats.html" data-category="conservation">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/18451260/pexels-photo-18451260.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Marine iguanas resting on dark volcanic sand along a Galápagos Islands beach with the Pacific surf behind them." loading="lazy">
       </div>
@@ -610,7 +624,7 @@
       </div>
     </a>
 
-    <a class="post reveal" href="blog/the-license-a-boat-needs-to-watch-whales-in-the-azores.html">
+    <a class="post reveal" href="blog/the-license-a-boat-needs-to-watch-whales-in-the-azores.html" data-category="location">
       <div class="post-art">
         <img src="https://images.pexels.com/photos/29699851/pexels-photo-29699851.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Surfers wait in the ocean swell for an incoming wave at a rugged Atlantic surf beach in the Azores." loading="lazy">
       </div>
@@ -629,6 +643,23 @@
 </footer>
 
 <script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const posts = document.querySelectorAll('.post');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const category = btn.dataset.category;
+      posts.forEach(post => {
+        if(category === 'all' || post.dataset.category === category){
+          post.classList.remove('hidden');
+        } else {
+          post.classList.add('hidden');
+        }
+      });
+    });
+  });
+
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
