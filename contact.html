@@ -11,6 +11,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061A2E">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <title>Contact | Ocean Community</title>
@@ -30,6 +31,7 @@
     --flare:#2FA8E0; --sand:#BFE0F2; --line: rgba(234,245,252,0.14);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{
     background-color:var(--abyss);
     color:var(--foam); font-family:'Sora', sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;
@@ -50,6 +52,10 @@
   .navlinks a:focus-visible{outline:2px solid var(--flare); outline-offset:3px;}
   .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
   .reveal.visible{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none; opacity:1; transform:none;}
+    html{scroll-behavior:auto;}
+  }
 
   .hero{position:relative; padding:36px 0 32px; border-bottom:1px solid var(--line); overflow:hidden;}
   .hero-photo{position:absolute; inset:0; z-index:0; background-image:url('ocean-hero.jpg'); background-size:cover; background-position:center 60%; transition:transform .6s ease;}
