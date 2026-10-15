@@ -48,6 +48,8 @@
   .navlinks a:hover{opacity:1; color:var(--foam);}
   .navlinks a:hover::after{width:100%;}
   .navlinks a:focus-visible{outline:2px solid var(--flare); outline-offset:3px;}
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
 
   .hero{position:relative; padding:36px 0 32px; border-bottom:1px solid var(--line); overflow:hidden;}
   .hero-photo{position:absolute; inset:0; z-index:0; background-image:url('ocean-hero.jpg'); background-size:cover; background-position:center 60%; transition:transform .6s ease;}
@@ -112,7 +114,7 @@
 </header>
 
 <main class="wrap">
-  <div class="mail-card">
+  <div class="mail-card reveal">
     <div>
       <h2>Email us</h2>
       <p>The fastest way to reach the team. One inbox, no forms to fill in.</p>
@@ -123,7 +125,7 @@
     </a>
   </div>
 
-  <div class="topics">
+  <div class="topics reveal">
     <div class="topic-card">
       <h3>Suggest a stay</h3>
       <p>Tell us the name, the location and what makes the conservation tie real. A named reserve, a funded program, a stated contribution. The more specific, the better.</p>
@@ -142,6 +144,19 @@
 <footer>
   <div class="wrap">© 2026 Ocean Community. Pure showcase since 2020. We do not process bookings. Photos are representative of each destination.</div>
 </footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
