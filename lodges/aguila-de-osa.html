@@ -79,7 +79,17 @@
   .related-list li{font-size:14px; padding:10px 0; border-bottom:1px solid var(--line);}
   .related-list a{text-decoration:none; font-weight:600; border-bottom:1px solid var(--flare); padding-bottom:1px;}
   .related-list a:hover{opacity:0.8;}
-  footer{padding:28px 0 32px; border-top:1px solid var(--line); font-size:12px; opacity:0.5; margin-top:16px; text-align:center;}
+  footer{padding:44px 0 0; border-top:1px solid var(--line); margin-top:16px;}
+  .footer-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px; padding-bottom:30px;}
+  .footer-tagline{font-size:13px; opacity:0.6; max-width:320px; line-height:1.6; margin-top:8px;}
+  .footer-links{display:flex; gap:26px; font-size:14px;}
+  .footer-links a{color:var(--sand); opacity:0.8; text-decoration:none; transition:opacity .18s ease, color .18s ease;}
+  .footer-links a:hover{opacity:1; color:var(--flare);}
+  .footer-bottom{border-top:1px solid var(--line); padding:16px 0 28px; font-size:12px; opacity:0.5; text-align:center;}
+  @media (max-width:600px){
+    .footer-top{flex-direction:column; gap:18px;}
+    .footer-links{gap:16px; flex-wrap:wrap; font-size:13px;}
+  }
   @media (max-width:600px){
     nav .wrap{flex-direction:column; align-items:flex-start; gap:10px;}
     .navlinks{gap:16px; font-size:13px; flex-wrap:wrap;}
@@ -145,7 +155,19 @@
   <p class="vetting-note reveal">Ocean Community is not affiliated with Aguila de Osa and does not process bookings from this listing.</p>
 </div>
 <footer>
-  <div class="wrap">© 2026 Ocean Community. Pure showcase since 2020. We do not process bookings. Photos are representative of each destination.</div>
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <a class="logo" href="../index.html">Ocean <span>Community</span></a>
+      <p class="footer-tagline">A small, checked list of eco stays that actually give something back to the ocean.</p>
+    </div>
+    <div class="footer-links">
+      <a href="../map.html">Our Eco Stays</a>
+      <a href="../about.html">About Us</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">© 2026 Ocean Community. Pure showcase since 2020. We do not process bookings. Photos are representative of each destination.</div>
 </footer>
 <script>
   const revealEls = document.querySelectorAll('.reveal');
