@@ -40,14 +40,14 @@
   nav{position:sticky; top:0; z-index:50; background:rgba(6,26,46,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:18px 0;}
   nav .wrap{max-width:1200px; display:flex; align-items:center; justify-content:space-between;}
   .logo{font-family:'Sora', sans-serif; font-weight:800; font-size:20px; line-height:1.05; text-decoration:none; display:inline-flex; align-items:center; gap:8px; color:var(--foam); text-transform:lowercase;}
-  .logo-icon{width:26px; height:26px; flex-shrink:0; color:var(--flare);}
+  .logo-icon{width:30px; height:30px; flex-shrink:0; color:var(--flare);}
   .logo-text{display:inline-flex; flex-direction:column; gap:2px;}
   .logo-sub{font-weight:700; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--foam); opacity:0.75;}
   .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; margin-left:auto; color:var(--foam);}
   .nav-toggle svg{width:24px; height:24px; display:block;}
   .navlinks{display:flex; align-items:center; gap:20px; font-size:14px;}
-  .navlinks a{color:var(--flare); text-decoration:none; font-weight:600; padding:4px 0; transition:color .18s ease, opacity .18s ease;}
-  .navlinks a:hover{color:var(--foam);}
+  .navlinks a{color:var(--foam); text-decoration:none; font-weight:600; padding:4px 0; transition:color .18s ease, opacity .18s ease;}
+  .navlinks a:hover{color:var(--flare);}
   .nav-right{display:flex; align-items:center; gap:10px;}
   .nav-ig{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:1px solid rgba(47,168,224,0.3); background:rgba(47,168,224,0.08); color:var(--flare); transition:background .2s ease, color .2s ease, border-color .2s ease; flex-shrink:0;}
   .nav-ig:hover{background:var(--flare); color:var(--abyss); border-color:var(--flare);}
@@ -89,7 +89,7 @@
   @media (max-width:600px){
     nav .wrap{position:relative;}
     .logo{font-size:17px;}
-    .logo-icon{width:22px; height:22px;}
+    .logo-icon{width:25px; height:25px;}
     .nav-toggle{display:flex; align-items:center; justify-content:center;}
     .navlinks{display:none; flex-direction:column; gap:8px; position:absolute; left:0; right:0; top:100%; margin-top:1px; background:rgba(6,26,46,0.98); backdrop-filter:blur(10px); padding:14px 20px 20px; border-bottom:1px solid var(--line); box-shadow:0 20px 34px -14px rgba(0,0,0,0.55);}
     .navlinks.open{display:flex;}
@@ -113,7 +113,7 @@
 <body>
 <nav>
   <div class="wrap">
-    <a class="logo" href="../index.html"><svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 6C11 6 6 13 6 17a5 5 0 0 0 10 0c0-4-5-11-5-11z" fill="currentColor" opacity="0.5"/><path d="M20 2C20 2 13 11 13 16a7 7 0 0 0 14 0c0-5-7-14-7-14z" fill="currentColor"/></svg><span class="logo-text">ocean<span class="logo-sub">Community</span></span></a>
+    <a class="logo" href="../index.html"><svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,16) scale(0.62)" opacity="0.55"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/></g><g transform="translate(22,0) scale(0.46)" opacity="0.7"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/></g><g transform="translate(8,8) scale(1)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/></g></svg><span class="logo-text">ocean<span class="logo-sub">Community</span></span></a>
     <div class="nav-right">
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <div class="navlinks" id="navLinks">
@@ -169,7 +169,7 @@
 <footer>
   <div class="wrap footer-top">
     <div class="footer-brand">
-      <a class="logo" href="../index.html"><svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 6C11 6 6 13 6 17a5 5 0 0 0 10 0c0-4-5-11-5-11z" fill="currentColor" opacity="0.5"/><path d="M20 2C20 2 13 11 13 16a7 7 0 0 0 14 0c0-5-7-14-7-14z" fill="currentColor"/></svg><span class="logo-text">ocean<span class="logo-sub">Community</span></span></a>
+      <a class="logo" href="../index.html"><svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,16) scale(0.62)" opacity="0.55"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/></g><g transform="translate(22,0) scale(0.46)" opacity="0.7"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/></g><g transform="translate(8,8) scale(1)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/></g></svg><span class="logo-text">ocean<span class="logo-sub">Community</span></span></a>
       <p class="footer-tagline">A small, checked list of eco stays that actually give something back to the ocean.</p>
     </div>
     <div class="footer-links">
