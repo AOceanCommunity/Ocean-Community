@@ -732,6 +732,15 @@
 <script>
   const map = L.map('map', { worldCopyJump: true, zoomControl: false, minZoom: 1 }).setView([10, 20], 2);
   const bounds = L.latLngBounds();
+  const continentBounds = {};
+  const colorContinentMap = {
+    '#2FA8E0': 'asia',
+    '#FF8B6B': 'africa',
+    '#BFE0F2': 'europe',
+    '#8FBF9F': 'namerica',
+    '#F2C14E': 'samerica',
+    '#C792EA': 'oceania'
+  };
   L.control.zoom({ position: 'topright' }).addTo(map);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors',
@@ -758,6 +767,11 @@
 
   function addMarker(lat, lng, color, name, loc, desc, href){
     bounds.extend([lat, lng]);
+    const cont = colorContinentMap[color];
+    if(cont){
+      if(!continentBounds[cont]) continentBounds[cont] = L.latLngBounds();
+      continentBounds[cont].extend([lat, lng]);
+    }
     const marker = L.marker([lat, lng], {
       icon: L.divIcon({
         html: '<div class="map-pin" style="background:' + color + ';"></div>',
@@ -810,7 +824,7 @@
   addMarker(11.31, -73.95, '#F2C14E', 'Ecohabs Tayrona', 'Tayrona National Park, Colombia', 'Bamboo and palm bungalows inside Tayrona National Park, overlooking the Caribbean.', 'lodges/ecohabs-tayrona.html');
   addMarker(-16.78, 179.35, '#C792EA', 'Jean Michel Cousteau Resort', 'Savusavu Bay, Fiji', 'An eco retreat founded on Jean Michel Cousteau\'s ocean conservation philosophy.', 'lodges/jean-michel-cousteau-resort.html');
   addMarker(-16.68, 180.15, '#C792EA', 'Maqai Beach Eco Surf Resort', 'Qamea Island, Fiji', 'Small surf focused eco resort, a natural bridge to the site\'s surf trips.', 'lodges/maqai-beach-eco-surf-resort.html');
-  addMarker(-17.53, -149.83, '#C792EA', 'Green Lodge Moorea', 'Moorea, French Polynesia', 'Barefoot beach bungalows on Moorea, run with a direct island conservation partnership.', 'lodges/green-lodge-moorea.html');
+  addMarker(-17.53, 210.17, '#C792EA', 'Green Lodge Moorea', 'Moorea, French Polynesia', 'Barefoot beach bungalows on Moorea, run with a direct island conservation partnership.', 'lodges/green-lodge-moorea.html');
   addMarker(-16.6, 179.35, '#C792EA', 'Sau Bay Resort', 'Vanua Levu, Fiji', 'Small dive resort on Fiji\'s second largest island.', 'lodges/sau-bay-resort.html');
   addMarker(-17.78, 177.19, '#C792EA', 'Likuliku Lagoon Resort', 'Malolo Island, Fiji', 'Fiji\'s only overwater bures, on the Mamanuca Islands.', 'lodges/likuliku-lagoon-resort.html');
   addMarker(-24.11, 152.71, '#C792EA', 'Lady Elliot Island Eco Resort', 'Great Barrier Reef, Australia', 'Coral cay resort at the southern tip of the Great Barrier Reef.', 'lodges/lady-elliot-island-eco-resort.html');
@@ -847,6 +861,11 @@
           block.classList.add('hidden');
         }
       });
+      if(continent === 'all'){
+        map.fitBounds(bounds, { padding: [30, 30] });
+      } else if(continentBounds[continent]){
+        map.fitBounds(continentBounds[continent], { padding: [60, 60], maxZoom: 8 });
+      }
     });
   });
 
