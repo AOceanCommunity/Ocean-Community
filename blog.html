@@ -46,6 +46,10 @@
   .navlinks{display:flex; gap:8px; font-size:13px;}
   .navlinks a{color:var(--flare); background:rgba(47,168,224,0.08); border:1px solid rgba(47,168,224,0.3); text-decoration:none; padding:6px 13px; border-radius:999px; font-weight:600; transition:background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;}
   .navlinks a:hover{background:var(--flare); color:var(--abyss); border-color:var(--flare); transform:translateY(-1px);}
+  .nav-right{display:flex; align-items:center; gap:10px;}
+  .nav-ig{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:1px solid rgba(47,168,224,0.3); background:rgba(47,168,224,0.08); color:var(--flare); transition:background .2s ease, color .2s ease, border-color .2s ease; flex-shrink:0;}
+  .nav-ig:hover{background:var(--flare); color:var(--abyss); border-color:var(--flare);}
+  .nav-ig svg{width:16px; height:16px; display:block;}
   .navlinks a:focus-visible{outline:2px solid var(--flare); outline-offset:3px;}
 
   .hero{position:relative; padding:36px 0 56px; border-bottom:1px solid var(--line); overflow:hidden;}
@@ -120,12 +124,15 @@
 <nav>
   <div class="wrap">
     <a class="logo" href="index.html">Ocean <span>Community</span></a>
+    <div class="nav-right">
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <div class="navlinks" id="navLinks">
       <a href="map.html">Our Eco Stays</a>
       <a href="blog.html">Blog</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
+    </div>
+      <a class="nav-ig" href="https://www.instagram.com/ocean_community" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg></a>
     </div>
   </div>
 </nav>
