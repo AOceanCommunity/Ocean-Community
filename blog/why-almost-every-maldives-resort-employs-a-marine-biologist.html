@@ -39,8 +39,10 @@
   .eyebrow{font-family:'Sora', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--sand); opacity:0.9;}
   nav{position:sticky; top:0; z-index:50; background:rgba(6,26,46,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:18px 0;}
   nav .wrap{max-width:1200px; display:flex; align-items:center; justify-content:space-between;}
-  .logo{font-family:'Sora', sans-serif; font-weight:800; font-size:20px; line-height:1.05; text-decoration:none; display:inline-flex; flex-direction:column; color:var(--foam); text-transform:lowercase; gap:2px;}
-  .logo span{font-weight:700; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--foam); opacity:0.75;}
+  .logo{font-family:'Sora', sans-serif; font-weight:800; font-size:20px; line-height:1.05; text-decoration:none; display:inline-flex; align-items:center; gap:8px; color:var(--foam); text-transform:lowercase;}
+  .logo-icon{width:26px; height:26px; flex-shrink:0; color:var(--flare);}
+  .logo-text{display:inline-flex; flex-direction:column; gap:2px;}
+  .logo-sub{font-weight:700; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--foam); opacity:0.75;}
   .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; margin-left:auto; color:var(--foam);}
   .nav-toggle svg{width:24px; height:24px; display:block;}
   .navlinks{display:flex; align-items:center; gap:20px; font-size:14px;}
@@ -50,9 +52,9 @@
   .nav-ig{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:1px solid rgba(47,168,224,0.3); background:rgba(47,168,224,0.08); color:var(--flare); transition:background .2s ease, color .2s ease, border-color .2s ease; flex-shrink:0;}
   .nav-ig:hover{background:var(--flare); color:var(--abyss); border-color:var(--flare);}
   .nav-ig svg{width:16px; height:16px; display:block;}
-  .back-link{display:inline-block; margin:36px 0 20px; font-size:13.5px; text-decoration:none; opacity:0.75; border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .back-link{display:inline-block; margin:22px 0 14px; font-size:13.5px; text-decoration:none; opacity:0.75; border-bottom:1px solid var(--line); padding-bottom:2px;}
   .back-link:hover{opacity:1; border-color:var(--sand);}
-  .post-hero{position:relative; height:320px; border-radius:20px; overflow:hidden; margin-bottom:28px; box-shadow:0 24px 50px -20px rgba(0,0,0,0.55);}
+  .post-hero{position:relative; height:320px; border-radius:20px; overflow:hidden; margin-bottom:20px; box-shadow:0 24px 50px -20px rgba(0,0,0,0.55);}
   .post-hero img{width:100%; height:100%; object-fit:cover; display:block;}
   .hero-overlay{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:24px 28px; background:linear-gradient(180deg, rgba(6,26,46,0) 30%, rgba(6,26,46,0.55) 70%, rgba(6,26,46,0.92) 100%);}
   .hero-overlay h1{margin-bottom:6px; text-shadow:0 2px 16px rgba(0,0,0,0.5);}
@@ -73,13 +75,13 @@
   .related-list li{font-size:14px; padding:10px 0; border-bottom:1px solid var(--line);}
   .related-list a{text-decoration:none; font-weight:600; border-bottom:1px solid var(--flare); padding-bottom:1px;}
   .related-list a:hover{opacity:0.8;}
-  footer{padding:44px 0 0; border-top:1px solid var(--line); margin-top:16px;}
-  .footer-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px; padding-bottom:30px;}
+  footer{padding:30px 0 0; border-top:1px solid var(--line); margin-top:6px;}
+  .footer-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px; padding-bottom:20px;}
   .footer-tagline{font-size:13px; opacity:0.6; max-width:320px; line-height:1.6; margin-top:8px;}
   .footer-links{display:flex; flex-direction:column; align-items:flex-end; gap:10px; font-size:14px;}
   .footer-links a{color:var(--sand); opacity:0.8; text-decoration:none; transition:opacity .18s ease, color .18s ease;}
   .footer-links a:hover{opacity:1; color:var(--flare);}
-  .footer-bottom{border-top:1px solid var(--line); padding:16px 0 28px; font-size:12px; opacity:0.5; text-align:center;}
+  .footer-bottom{border-top:1px solid var(--line); padding:14px 0 18px; font-size:12px; opacity:0.5; text-align:center;}
   @media (max-width:600px){
     .footer-top{flex-direction:column; gap:18px;}
     .footer-links{gap:12px; align-items:flex-start; font-size:13px;}
@@ -87,6 +89,7 @@
   @media (max-width:600px){
     nav .wrap{position:relative;}
     .logo{font-size:17px;}
+    .logo-icon{width:22px; height:22px;}
     .nav-toggle{display:flex; align-items:center; justify-content:center;}
     .navlinks{display:none; flex-direction:column; gap:8px; position:absolute; left:0; right:0; top:100%; margin-top:1px; background:rgba(6,26,46,0.98); backdrop-filter:blur(10px); padding:14px 20px 20px; border-bottom:1px solid var(--line); box-shadow:0 20px 34px -14px rgba(0,0,0,0.55);}
     .navlinks.open{display:flex;}
@@ -110,7 +113,7 @@
 <body>
 <nav>
   <div class="wrap">
-    <a class="logo" href="../index.html">Ocean <span>Community</span></a>
+    <a class="logo" href="../index.html"><svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 6C11 6 6 13 6 17a5 5 0 0 0 10 0c0-4-5-11-5-11z" fill="currentColor" opacity="0.5"/><path d="M20 2C20 2 13 11 13 16a7 7 0 0 0 14 0c0-5-7-14-7-14z" fill="currentColor"/></svg><span class="logo-text">ocean<span class="logo-sub">Community</span></span></a>
     <div class="nav-right">
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <div class="navlinks" id="navLinks">
@@ -166,7 +169,7 @@
 <footer>
   <div class="wrap footer-top">
     <div class="footer-brand">
-      <a class="logo" href="../index.html">Ocean <span>Community</span></a>
+      <a class="logo" href="../index.html"><svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 6C11 6 6 13 6 17a5 5 0 0 0 10 0c0-4-5-11-5-11z" fill="currentColor" opacity="0.5"/><path d="M20 2C20 2 13 11 13 16a7 7 0 0 0 14 0c0-5-7-14-7-14z" fill="currentColor"/></svg><span class="logo-text">ocean<span class="logo-sub">Community</span></span></a>
       <p class="footer-tagline">A small, checked list of eco stays that actually give something back to the ocean.</p>
     </div>
     <div class="footer-links">
