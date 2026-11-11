@@ -39,13 +39,12 @@
   .eyebrow{font-family:'Sora', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--sand); opacity:0.9;}
   nav{position:sticky; top:0; z-index:50; background:rgba(6,26,46,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:18px 0;}
   nav .wrap{max-width:1200px; display:flex; align-items:center; justify-content:space-between;}
-  .logo{font-family:'Fraunces', serif; font-style:italic; font-size:20px; text-decoration:none; display:inline-block;}
-  .logo span{color:var(--flare); font-style:normal;}
-  .navlinks{display:flex; gap:26px; font-size:14px;}
-  .navlinks a{color:var(--sand); opacity:0.8; text-decoration:none; position:relative; padding-bottom:3px; transition:color .2s ease, opacity .2s ease;}
-  .navlinks a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px; background:linear-gradient(90deg, var(--flare), var(--sand)); transition:width .25s ease;}
-  .navlinks a:hover{opacity:1; color:var(--foam);}
-  .navlinks a:hover::after{width:100%;}
+  .logo{font-family:'Fraunces', serif; font-size:20px; font-weight:600; text-decoration:none; display:inline-block; color:var(--flare);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; margin-left:auto; color:var(--foam);}
+  .nav-toggle svg{width:24px; height:24px; display:block;}
+  .navlinks{display:flex; gap:10px; font-size:13.5px;}
+  .navlinks a{color:var(--flare); background:rgba(47,168,224,0.12); border:1px solid rgba(47,168,224,0.35); text-decoration:none; padding:8px 16px; border-radius:999px; font-weight:600; transition:background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;}
+  .navlinks a:hover{background:var(--flare); color:var(--abyss); border-color:var(--flare); transform:translateY(-1px);}
   .back-link{display:inline-block; margin:36px 0 20px; font-size:13.5px; text-decoration:none; opacity:0.75; border-bottom:1px solid var(--line); padding-bottom:2px;}
   .back-link:hover{opacity:1; border-color:var(--sand);}
   .post-hero{position:relative; height:320px; border-radius:20px; overflow:hidden; margin-bottom:28px; box-shadow:0 24px 50px -20px rgba(0,0,0,0.55);}
@@ -77,8 +76,11 @@
   .footer-links a:hover{opacity:1; color:var(--flare);}
   .footer-bottom{border-top:1px solid var(--line); padding:16px 0 28px; font-size:12px; opacity:0.5; text-align:center;}
   @media (max-width:600px){
-    nav .wrap{flex-direction:column; align-items:flex-start; gap:10px;}
-    .navlinks{gap:16px; font-size:13px; flex-wrap:wrap;}
+    nav .wrap{position:relative;}
+    .nav-toggle{display:flex; align-items:center; justify-content:center;}
+    .navlinks{display:none; flex-direction:column; gap:8px; position:absolute; left:0; right:0; top:100%; margin-top:1px; background:rgba(6,26,46,0.98); backdrop-filter:blur(10px); padding:14px 20px 20px; border-bottom:1px solid var(--line); box-shadow:0 20px 34px -14px rgba(0,0,0,0.55);}
+    .navlinks.open{display:flex;}
+    .navlinks a{width:100%; text-align:center; padding:10px 16px;}
     .wrap{padding:0 20px;}
     .post-hero{height:220px;}
     .back-link{margin:40px 0 16px;}
@@ -100,7 +102,8 @@
 <nav>
   <div class="wrap">
     <a class="logo" href="../index.html">Ocean <span>Community</span></a>
-    <div class="navlinks">
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <div class="navlinks" id="navLinks">
       <a href="../map.html">Our Eco Stays</a>
       <a href="../about.html">About Us</a>
       <a href="../blog.html">Blog</a>
@@ -164,6 +167,20 @@
   <div class="wrap footer-bottom">© 2026 Ocean Community. Pure showcase since 2020. We do not process bookings. Photos are representative of each destination.</div>
 </footer>
 <script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  if(navToggle && navLinks){
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
