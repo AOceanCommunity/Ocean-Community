@@ -42,9 +42,9 @@
   .logo span{font-weight:700; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--foam); opacity:0.75;}
   .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; margin-left:auto; color:var(--foam);}
   .nav-toggle svg{width:24px; height:24px; display:block;}
-  .navlinks{display:flex; gap:8px; font-size:13px;}
-  .navlinks a{color:var(--flare); background:rgba(47,168,224,0.08); border:1px solid rgba(47,168,224,0.3); text-decoration:none; padding:6px 13px; border-radius:999px; font-weight:600; transition:background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;}
-  .navlinks a:hover{background:var(--flare); color:var(--abyss); border-color:var(--flare); transform:translateY(-1px);}
+  .navlinks{display:flex; align-items:center; gap:20px; font-size:14px;}
+  .navlinks a{color:var(--flare); text-decoration:none; font-weight:600; padding:4px 0; transition:color .18s ease, opacity .18s ease;}
+  .navlinks a:hover{color:var(--foam);}
   .nav-right{display:flex; align-items:center; gap:10px;}
   .nav-ig{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:1px solid rgba(47,168,224,0.3); background:rgba(47,168,224,0.08); color:var(--flare); transition:background .2s ease, color .2s ease, border-color .2s ease; flex-shrink:0;}
   .nav-ig:hover{background:var(--flare); color:var(--abyss); border-color:var(--flare);}
@@ -64,7 +64,7 @@
   .page-head .wrap{position:relative; z-index:2;}
   .page-head h1{font-size:clamp(32px, 4.6vw, 56px); line-height:1.15; margin:14px 0 16px;}
   .page-head h1 em{font-style:italic; color:var(--flare);}
-  .page-head p{max-width:60ch; opacity:0.88; font-size:16px;}
+  .page-head p{max-width:60ch; opacity:0.88; font-size:16px; margin-top:16px;}
   .ig-link{display:inline-flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; color:var(--sand); text-decoration:none; margin-top:18px; opacity:0.9; transition:color .18s ease, opacity .18s ease;}
   .ig-link:hover{color:var(--flare); opacity:1;}
   .ig-link svg{width:17px; height:17px; flex-shrink:0;}
@@ -123,11 +123,12 @@
     .nav-toggle{display:flex; align-items:center; justify-content:center;}
     .navlinks{display:none; flex-direction:column; gap:8px; position:absolute; left:0; right:0; top:100%; margin-top:1px; background:rgba(6,26,46,0.98); backdrop-filter:blur(10px); padding:14px 20px 20px; border-bottom:1px solid var(--line); box-shadow:0 20px 34px -14px rgba(0,0,0,0.55);}
     .navlinks.open{display:flex;}
-    .navlinks a{width:100%; text-align:center; padding:9px 16px;}
+    .navlinks a{width:100%; text-align:center; padding:11px 0; border-bottom:1px solid var(--line);}
+    .navlinks a:last-child{border-bottom:none;}
     .wrap{padding:0 20px;}
     header.page-head{padding:26px 0 22px;}
     .page-head h1{font-size:27px; line-height:1.22; margin:10px 0 10px;}
-    .page-head p{font-size:14px; line-height:1.5;}
+    .page-head p{font-size:14px; line-height:1.5; margin-top:12px;}
     .ig-link{margin-top:12px; font-size:12.5px;}
     .stat-bar{gap:8px 14px; margin-top:16px;}
     .stat-num{font-size:16px;}
@@ -162,15 +163,13 @@
   <div class="hero-photo" aria-hidden="true"></div>
   <div class="wrap">
     <h1>The world's <em>top 6</em> eco lodges, villas and hotels, by continent.</h1>
-    <p>Ocean Community began as a place to share what we love the most and a community built around one belief, that the best thing we can do is help protect our oceans.</p>
     <a class="ig-link" href="https://www.instagram.com/ocean_community" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
       @ocean_community
     </a>
+    <p>Ocean Community began as a place to share what we love the most and a community built around one belief, that the best thing we can do is help protect our oceans.</p>
     <div class="stat-bar reveal">
       <div class="stat"><span class="stat-num">36</span><span class="stat-label">handpicked stays</span></div>
-      <span class="stat-sep">·</span>
-      <div class="stat"><span class="stat-num">0%</span><span class="stat-label">Commission</span></div>
       <span class="stat-sep">·</span>
       <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Checkable ties</span></div>
     </div>
