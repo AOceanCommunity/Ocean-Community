@@ -85,8 +85,6 @@
   .continent-block.hidden{display:none;}
   .continent-head{display:flex; align-items:baseline; gap:14px; margin-bottom:8px; flex-wrap:wrap;}
   .continent-head h2{font-size:clamp(22px,2.6vw,30px);}
-  .progress-pill{font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:12px; border:1px solid var(--line); border-radius:999px; padding:4px 12px; opacity:0.8;}
-  .progress-pill.done{border-color:var(--flare); color:var(--flare); opacity:1; background:rgba(47,168,224,0.1);}
   .continent-note{font-size:13px; opacity:0.65; margin-bottom:8px; max-width:70ch;}
   .rule-full{height:1px; background:linear-gradient(90deg, var(--line), transparent); margin-bottom:26px; margin-top:14px;}
   .stays{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
@@ -94,7 +92,6 @@
   .stay:hover{transform:translateY(-6px); border-color:rgba(47,168,224,0.55); box-shadow:0 24px 44px -18px rgba(0,0,0,0.55), 0 0 0 1px rgba(47,168,224,0.2);}
   .stay-art{height:140px; width:100%; position:relative; background:var(--current2);}
   .stay-art img{width:100%; height:100%; display:block; object-fit:cover;}
-  .stay-rank{position:absolute; top:12px; left:12px; width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-family:'Sora', sans-serif; font-size:13px; font-weight:700; background:rgba(6,26,46,0.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); color:var(--foam); border-radius:50%; border:1.5px solid rgba(255,255,255,0.28); box-shadow:0 4px 14px -4px rgba(0,0,0,0.55);}
   .stay-body{padding:22px 22px 20px; display:flex; flex-direction:column; gap:10px; flex:1;}
   .stay h3{font-size:18px; font-weight:500;}
   .stay .loc{display:flex; align-items:center; gap:6px; font-size:11px; opacity:0.85; font-family:'Sora', sans-serif; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--sand);}
@@ -191,11 +188,11 @@
 <section id="lodges">
   <div class="wrap">
     <div class="continent-block" data-continent="asia">
-      <div class="continent-head"><h2>Asia</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="continent-head"><h2>Asia</h2></div>
       <div class="rule-full"></div>
       <div class="stays">
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">01</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/32157316/pexels-photo-32157316.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of lush, jungle covered limestone islands rising from a turquoise lagoon in Raja Ampat, Indonesia." loading="lazy">
           </div>
           <div class="stay-body">
@@ -208,7 +205,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">02</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/30378147/pexels-photo-30378147.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A thatched bamboo beach hut among tall palm trees on a quiet tropical shoreline." loading="lazy">
           </div>
           <div class="stay-body">
@@ -221,7 +218,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">03</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/33549424/pexels-photo-33549424.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a palm fringed tropical beach resort with turquoise water and white sand in the Philippines." loading="lazy">
           </div>
           <div class="stay-body">
@@ -234,7 +231,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">04</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/30037427/pexels-photo-30037427.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A luxurious overwater wooden bungalow with an infinity edge pool overlooking a calm turquoise lagoon at sunset." loading="lazy">
           </div>
           <div class="stay-body">
@@ -247,7 +244,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">05</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/28843967/pexels-photo-28843967.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A long wooden walkway leads out to overwater villas above a clear turquoise lagoon in the Maldives." loading="lazy">
           </div>
           <div class="stay-body">
@@ -260,7 +257,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">06</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/13262089/pexels-photo-13262089.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of turquoise coral atolls and reef patterns surrounded by deep blue ocean in the Maldives." loading="lazy">
           </div>
           <div class="stay-body">
@@ -275,11 +272,11 @@
     </div>
 
     <div class="continent-block" data-continent="africa">
-      <div class="continent-head"><h2>Africa</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="continent-head"><h2>Africa</h2></div>
       <div class="rule-full"></div>
       <div class="stays">
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">01</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/17975653/pexels-photo-17975653.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A colorful coral reef teeming with tropical fish in clear turquoise water." loading="lazy">
           </div>
           <div class="stay-body">
@@ -292,7 +289,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">02</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/5993393/pexels-photo-5993393.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A quiet Zanzibar beach with a single palm tree leaning over pale sand and a distant figure wading in the calm sea." loading="lazy">
           </div>
           <div class="stay-body">
@@ -305,7 +302,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">03</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/15298798/pexels-photo-15298798.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a contemporary beachfront resort with a swimming pool, palm trees and sun loungers beside white sand and turquoise sea." loading="lazy">
           </div>
           <div class="stay-body">
@@ -318,7 +315,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">04</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/15962202/pexels-photo-15962202.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A small rocky coastal outcrop overgrown with green trees rising above calm turquoise water, evoking a low coral cliff shoreline." loading="lazy">
           </div>
           <div class="stay-body">
@@ -331,7 +328,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">05</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/14866996/pexels-photo-14866996.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dense coconut palms and tropical forest covering a steep, mountainous island slope under a clear sky." loading="lazy">
           </div>
           <div class="stay-body">
@@ -344,7 +341,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">06</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/30358268/pexels-photo-30358268.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Smooth giant granite boulders framing a secluded turquoise water beach, classic Seychelles island scenery." loading="lazy">
           </div>
           <div class="stay-body">
@@ -359,11 +356,11 @@
     </div>
 
     <div class="continent-block" data-continent="europe">
-      <div class="continent-head"><h2>Europe</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="continent-head"><h2>Europe</h2></div>
       <div class="rule-full"></div>
       <div class="stays">
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">01</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/34051897/pexels-photo-34051897.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lush green hills and a rugged volcanic coastline in the Azores under a moody sky." loading="lazy">
           </div>
           <div class="stay-body">
@@ -376,7 +373,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">02</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/29699851/pexels-photo-29699851.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Surfers wait in the ocean swell for an incoming wave at a rugged Atlantic surf beach." loading="lazy">
           </div>
           <div class="stay-body">
@@ -389,7 +386,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">03</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/34169964/pexels-photo-34169964.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of the turquoise Ionian Sea meeting the rocky Zakynthos coastline." loading="lazy">
           </div>
           <div class="stay-body">
@@ -402,7 +399,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">04</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/28408402/pexels-photo-28408402.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A quiet white sand beach fringed by clear, shallow turquoise water." loading="lazy">
           </div>
           <div class="stay-body">
@@ -415,7 +412,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">05</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/29040289/pexels-photo-29040289.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A person stands on a clifftop overlooking the deep blue Mediterranean Sea in Ibiza." loading="lazy">
           </div>
           <div class="stay-body">
@@ -428,7 +425,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">06</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/30820123/pexels-photo-30820123.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A narrow whitewashed street lined with traditional Spanish Mediterranean buildings." loading="lazy">
           </div>
           <div class="stay-body">
@@ -443,12 +440,12 @@
     </div>
 
     <div class="continent-block" data-continent="namerica">
-      <div class="continent-head"><h2>North America</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="continent-head"><h2>North America</h2></div>
       <p class="continent-note">Includes Central America.</p>
       <div class="rule-full"></div>
       <div class="stays">
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">01</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/67395/pexels-photo-67395.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A calm jungle river winds through dense, overhanging Costa Rican rainforest foliage under an overcast tropical sky." loading="lazy">
           </div>
           <div class="stay-body">
@@ -461,7 +458,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">02</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/17025853/pexels-photo-17025853.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a muddy river winding through unbroken tropical rainforest canopy, evoking a boat only route into a wilderness reserve." loading="lazy">
           </div>
           <div class="stay-body">
@@ -474,7 +471,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">03</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/1631768/pexels-photo-1631768.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A large whale shark glides just beneath the surface of clear blue ocean water, evoking marine wildlife encounters off a remote desert coast." loading="lazy">
           </div>
           <div class="stay-body">
@@ -487,7 +484,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">04</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/35072715/pexels-photo-35072715.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of lush tropical rainforest meeting a rugged coastline, where forest trails give way to rocky shore and open ocean." loading="lazy">
           </div>
           <div class="stay-body">
@@ -500,7 +497,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">05</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/7001499/pexels-photo-7001499.jpeg?auto=compress&cs=tinysrgb&w=800" alt="An underwater view of a whale shark swimming gracefully through clear tropical water, representing marine adventure activity near a rainforest bay." loading="lazy">
           </div>
           <div class="stay-body">
@@ -513,7 +510,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">06</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/19040956/pexels-photo-19040956.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close up of coral reef textures and colors in clear Caribbean water, evoking the Belize Barrier Reef." loading="lazy">
           </div>
           <div class="stay-body">
@@ -528,11 +525,11 @@
     </div>
 
     <div class="continent-block" data-continent="samerica">
-      <div class="continent-head"><h2>South America</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="continent-head"><h2>South America</h2></div>
       <div class="rule-full"></div>
       <div class="stays">
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">01</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/18451260/pexels-photo-18451260.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Marine iguanas resting on dark volcanic sand along a Galápagos Islands beach with the Pacific surf behind them." loading="lazy">
           </div>
           <div class="stay-body">
@@ -545,7 +542,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">02</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/3841114/pexels-photo-3841114.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A sunny, palm fringed stretch of Bahia coastline in Brazil with people relaxing near the shoreline." loading="lazy">
           </div>
           <div class="stay-body">
@@ -558,7 +555,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">03</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/1201431/pexels-photo-1201431.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close up of a Galápagos giant tortoise&#x27;s weathered head and shell in a green highland habitat." loading="lazy">
           </div>
           <div class="stay-body">
@@ -571,7 +568,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">04</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/20883821/pexels-photo-20883821.jpeg?auto=compress&cs=tinysrgb&w=800" alt="View of Mole Beach in Florianópolis, Santa Catarina, showing Brazil&#x27;s rugged southern Atlantic coastline." loading="lazy">
           </div>
           <div class="stay-body">
@@ -584,7 +581,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">05</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/31790312/pexels-photo-31790312.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A palm lined tropical beach with turquoise water, evocative of Ecuador&#x27;s Pacific coast near Puerto Lopez." loading="lazy">
           </div>
           <div class="stay-body">
@@ -597,7 +594,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">06</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/12227830/pexels-photo-12227830.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a turquoise cove framed by lush green headlands in Tayrona National Park on Colombia&#x27;s Caribbean coast." loading="lazy">
           </div>
           <div class="stay-body">
@@ -612,11 +609,11 @@
     </div>
 
     <div class="continent-block" data-continent="oceania">
-      <div class="continent-head"><h2>Oceania</h2><span class="progress-pill done">6 / 6</span></div>
+      <div class="continent-head"><h2>Oceania</h2></div>
       <div class="rule-full"></div>
       <div class="stays">
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">01</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/33191057/pexels-photo-33191057.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerial view of a tropical beachfront resort with swimming pools surrounded by palm trees." loading="lazy">
           </div>
           <div class="stay-body">
@@ -629,7 +626,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">02</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/29773805/pexels-photo-29773805.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A palm fringed tropical beach with clear turquoise ocean water rolling in, suggesting a laid back surf side getaway." loading="lazy">
           </div>
           <div class="stay-body">
@@ -642,7 +639,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">03</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/1628086/pexels-photo-1628086.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A body of water in Moorea, French Polynesia, with azure lagoon shallows framed by lush green mountains." loading="lazy">
           </div>
           <div class="stay-body">
@@ -655,7 +652,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">04</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/3635910/pexels-photo-3635910.jpeg?auto=compress&cs=tinysrgb&w=800" alt="An underwater view of a vivid coral reef teeming with color, the kind of dive site a small reef focused resort would sit beside." loading="lazy">
           </div>
           <div class="stay-body">
@@ -668,7 +665,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">05</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/32267913/pexels-photo-32267913.jpeg?auto=compress&cs=tinysrgb&w=800" alt="An overwater bungalow perched above a calm lagoon at sunset, warm light reflecting off the water beneath its deck." loading="lazy">
           </div>
           <div class="stay-body">
@@ -681,7 +678,7 @@
         </article>
 
         <article class="stay reveal">
-          <div class="stay-art"><span class="stay-rank">06</span>
+          <div class="stay-art">
             <img src="https://images.pexels.com/photos/15206547/pexels-photo-15206547.jpeg?auto=compress&cs=tinysrgb&w=800" alt="An aerial view of coral reef formations meeting the shoreline, reminiscent of a small coral cay at the edge of the Great Barrier Reef." loading="lazy">
           </div>
           <div class="stay-body">
